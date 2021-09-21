@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-foundation.min.css" integrity="sha512-FxxtEcqC30sYnk1uvdsbiBuRRAOjXQlSc/YPN5d9oVTBhsuqy3ptkPqkXinxwpscyhQz8I9BLa+EhlvxtwFTGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Document</title>
+</head>
+<body>
+
+    <header><!-- Style/class relating to bootstrap container -->
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 12 -->
+                <div>
+                    <h1><a href="./index.html">CryptoWatcher</a></h1>
+                </div>
+                <div>
+                    <span class="fi-list"></span><!-- Have drop down for following selections -->
+                    <select name="menu-dd" id="menu-dd">
+                        <option id="home" value="home">Home</option>
+                        <!-- above value would direct user to home page-->
+                        <option id="ranked-list" value="ranked-list">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
+                        <!-- above option would create new div for each coin and order 1-100 -->
+                        <option value="gainers-list">Gainers</option><!-- polygon API-->
+                        <!-- above option would generate the list of top 20 gainers of the day -->
+                        <option value="losers-list">Losers</option><!-- polygon API-->
+                        <!-- above option would generate the list of top 20 gainers of the day -->
+                        <option value="historical-trades">Historical Trades</option><!-- polygon API-->
+                        <!-- above option would generate -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main><!-- Style/class relating to bootstrap container -->
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 3 -->
+                <label for="crypto">Select your crypto:</label>
+                <select name="crypto-coin" id="crypto-coin">
+                    <!-- Dynamically create list values from fetch call or alrady have preloaded values? -->
+                </select>
+            </div>
+            <div><!-- Style/class relating to bootstrap column 6 -->
+                <h4 id="currency-name"></h4>
+                <div id="currency-information"> <!-- From coinlib API &/or polygon API -->
+                    <p id="rank"></p>
+                    <p id="current-value"></p><!--(coinlib coin endpoint) data.price -->
+                    <p id="high-24hr"></p><!-- (coinlib coin endpoint) data.high_24h -->
+                    <p id="change-1h"></p><!-- (coinlib coin endpoint) data.delta_1h -->
+                    <p id="change-24h"></p><!-- (coinlib coin endpoint) data.delta_24h -->
+                    <p id="change-7d"></p><!-- (coinlib coin endpoint) data.delta_7d -->
+                    <p id="change-30d"></p><!-- (coinlib coin endpoint) data.delta_30d -->
+                    <p id="recommendation"><!-- To buy now or not maybe? --></p>
+                </div>
+            </div>
+            <div><!-- Style/class relating to bootstrap column 3 -->
+                <h5>CryptoTickers:</h5>
+                <!-- create a new ticker for each crypto searched, will show green if increasing or red if decreasing? as well as % change -->
+                <!-- we can dynamically create by selection/search the options below -->
+                <p id="ticker-name"></p><!-- from snapshot-ticker in polygon -->
+                <p id="todays_change"></p><!-- from snapshot-ticker in polygon -->
+                <p id="today_change_percent"></p><!-- from snapshot-ticker in polygon -->
+            </div>
+        </div>
+
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 12 -->
+                <div id="ranked-list-actual"><!-- from drop down on front page -->
+                    <!-- we can choose to dynamically create these if we want to -->
+                    <h6 id="ranked-rank"></h6><!-- (coinlib coinlist endpoint) data.coins[i].rank -->
+                    <p id="ranked-name"></p><!-- (coinlib coinlist endpoint) data.coins[i].name -->
+                    <p id="ranked-price"></p><!-- (coinlib coinlist endpoint) data.coins[i].price -->
+                    <p id="ranked-24h-change"></p><!-- (coinlib coinlist endpoint) data.coins[i].delta_24h -->
+                </div>
+            </div>
+        </div>
+
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 12 -->
+                <div id="gainers-list-actual">
+                    <!-- we can choose to dynamically create these if we want to -->
+                    <!-- list of 20 gainers whose price has increased by highest percentage since previous days close -->
+                    <!-- polygon snapshot gainers -->
+                </div>
+            </div>
+        </div>
+
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 12 -->
+                <div id="losers-list-actual">
+                    <!-- we can choose to dynamically create these if we want to -->
+                    <!-- list of 20 losers whose price has decreased by highest percentage since previous days close -->
+                    <!-- polygon snapshot losers -->
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <div id="historical-trades-actual">
+                    <!-- we can choose to dynamically create these if we want to -->
+                    <!-- from polygon -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
