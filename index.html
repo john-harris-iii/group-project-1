@@ -19,16 +19,16 @@
                 </div>
                 <div>
                     <span class="fi-list"></span><!-- Have drop down for following selections -->
-                    <select name="menu-dd" id="menu-dd">
-                        <option id="home" value="home">Home</option>
+                    <select name="menu-dd" id="menu-dd" class="toggle" data-target=".crypto">
+                        <option id="home" value="home" class="home">Home</option>
                         <!-- above value would direct user to home page-->
-                        <option id="ranked-list" value="ranked-list">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
+                        <option id="ranked-list" value="ranked-list" data-show="ranked-list ">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
                         <!-- above option would create new div for each coin and order 1-100 -->
-                        <option value="gainers-list">Gainers</option><!-- polygon API-->
+                        <option value="gainers-list" data-show="home">Gainers</option><!-- polygon API-->
                         <!-- above option would generate the list of top 20 gainers of the day -->
-                        <option value="losers-list">Losers</option><!-- polygon API-->
+                        <option value="losers-list" data-show="home">Losers</option><!-- polygon API-->
                         <!-- above option would generate the list of top 20 gainers of the day -->
-                        <option value="historical-trades">Historical Trades</option><!-- polygon API-->
+                        <option value="historical-trades" data-show=".historical-trades">Historical Trades</option><!-- polygon API-->
                         <!-- above option would generate -->
                     </select>
                 </div>
@@ -43,6 +43,11 @@
                 <select name="crypto-coin" id="crypto-coin">
                     <!-- Dynamically create list values from fetch call or alrady have preloaded values? -->
                 </select>
+                <!-- input that shows up if historical trading is selected-->
+                <div class="crypto">
+                <label for="date" class="hide historical-trades">Select the historical date</label>
+                <input type="date" class="hide historical-trades">
+                </div>
             </div>
             <div><!-- Style/class relating to bootstrap column 6 -->
                 <h4 id="currency-name"></h4>
@@ -110,6 +115,7 @@
     </main>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
