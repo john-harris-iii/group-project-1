@@ -17,12 +17,13 @@
                 <div class="cell large-10">
                     <h1><a href="./index.html">CryptoWatcher</a></h1>
                 </div>
+
                 <div class="cell large-2 ">
                 
                     <select name="menu-dd" id="menu-dd" class="toggle" data-target=".crypto">
-                        <option id="home" value="home" class="home">Home</option>
+                        <option id="home" value="home" data-show=".home">Home</option>
                         <!-- above value would direct user to home page-->
-                        <option id="ranked-list" value="ranked-list" data-show="ranked-list ">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
+                        <option id="ranked-list" value="ranked-list" data-show=".ranked-list">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
                         <!-- above option would create new div for each coin and order 1-100 -->
                         <option value="historical-trades" data-show=".historical-trades">Historical Trades</option><!-- polygon API-->
                         <!-- above option would generate -->
@@ -32,17 +33,20 @@
         </div>
     </header>
 
-    <main class="grid-container">
-        <div class="grid-x grid-margin-x">
-            <div class="cell large-2">
-                <label for="crypto">Select your crypto:</label>
-                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:"></input>
+    <main class="grid-container"><!-- Style/class relating to bootstrap container -->
+        <div class="grid-x grid-margin-x"><!-- Style/class relating to bootstrap row -->
+            <div class="cell large-2 crypto"><!-- Style/class relating to bootstrap column 3 -->
+                <!-- only shows if in home or historical trades option -->
+                <label for="crypto" class="home historical-trades hide">Select your crypto:</label>
+                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades hide">
                 <!-- input that shows up if historical trading is selected-->
-                <div class="crypto">
-                <label for="date" class="hide historical-trades">Select the historical date</label>
-                <input type="date" class="hide historical-trades">
-                </div>
+                <!-- input that shows up when in home or historical option -->
+                <label for="money-type" class="home historical-trades hide">Select your type of currency:</label>
+                <input type="text" name="money-type" id="money-type" class="home historical-trades hide" placeholder="example: USD, EUR, JPY" />
+                <label for="date" class="hide historical-trades">Select the historical date:</label>
+                <input type="date" name="crypto-date" class="hide historical-trades" />
             </div>
+          
             <div class="cell large-8">
                 <div class="card">
                     <div class="card-divider align-justify">
@@ -73,21 +77,22 @@
     <section class="grid-container">
         <div class="grid-x grid-margin-x">
             <div class="cell large-12">
-                <div id="ranked-list-actual"><!-- from drop down on front page -->
+                <div id="ranked-list-actual" class="crypto"><!-- from drop down on front page -->
                     <!-- we can choose to dynamically create these if we want to -->
-                    <h6 id="ranked-rank"></h6><!-- (coinlib coinlist endpoint) data.coins[i].rank -->
-                    <p id="ranked-name"></p><!-- (coinlib coinlist endpoint) data.coins[i].name -->
-                    <p id="ranked-price"></p><!-- (coinlib coinlist endpoint) data.coins[i].price -->
-                    <p id="ranked-24h-change"></p><!-- (coinlib coinlist endpoint) data.coins[i].delta_24h -->
+                    <h6 id="ranked-rank" class="ranked-list hide">future</h6><!-- (coinlib coinlist endpoint) data.coins[i].rank -->
+                    <p id="ranked-name" class="ranked-list hide">content</p><!-- (coinlib coinlist endpoint) data.coins[i].name -->
+                    <p id="ranked-price" class="ranked-list hide">here</p><!-- (coinlib coinlist endpoint) data.coins[i].price -->
+                    <p id="ranked-24h-change" class="ranked-list hide">!</p><!-- (coinlib coinlist endpoint) data.coins[i].delta_24h -->
                 </div>
             </div>
-        </div>
+        </div><!-- from drop down on front page -->
     </section>
+
 
     <section class="grid-container">
         <div class="grid-x grid-margin-x">
             <div class="cell large-12">
-                <div id="historical-trades-actual">
+                <div id="historical-trades-actual" class="crypto">
                     <!-- we can choose to dynamically create these if we want to -->
                     <!-- from polygon -->
                 </div>
