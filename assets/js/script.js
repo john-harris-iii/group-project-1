@@ -1,4 +1,7 @@
 //function calls are commented out so the api keys aren't used every time we load the page
+// variables we will call from previous 
+var cryptoSelect = $('#user-crypto-name');
+var currencySelect = $('#money-type');
 
 // function that changes content of page depending on the option selected
 $(document).on('change', '.toggle', function() {
@@ -35,7 +38,7 @@ function polygonOpenClose(){
     })
 };
 
-// polygonOpenClose();
+//polygonOpenClose();
 
 
 function coinLibGlobal() {
@@ -43,7 +46,7 @@ var apiKey = `adae3d665d605d5a`;
 //variable for currency user selects. This will come from the input value on the webpage
 //in the final product currency will be passed into the function as an argument
 var currency = "EUR"
-var coinlibGlobalURL = `https://coinlib.io/api/v1/global?key=${apiKey}&pref=${currency}`;
+var coinlibGlobalURL = 'https://coinlib.io/api/v1/global?key=' + apiKey + '&pref=' + currency;
 
     fetch(coinlibGlobalURL)
         .then(function(response) {
@@ -54,7 +57,7 @@ var coinlibGlobalURL = `https://coinlib.io/api/v1/global?key=${apiKey}&pref=${cu
         })
 }
 
-// coinLibGlobal();
+//coinLibGlobal();
 
 
 function coinLibCoinList() {
@@ -70,14 +73,14 @@ function coinLibCoinList() {
     })
 }
 
-// coinLibCoinList();
+//coinLibCoinList();
 
 
-function coinLibCoin() {
+$('#btn').click(function coinLibCoin() {
     var apiKey = `adae3d665d605d5a`;
     //in the final product currency and crypto will be passed into the function as arguments
-    var currency = "EUR";
-    var crypto = "BTC";
+    var currency = currencySelect.val();
+    var crypto = cryptoSelect.val();
 
     var coinlibCoinURL = `https://coinlib.io/api/v1/coin?key=${apiKey}&pref=${currency}&symbol=${crypto}`;
 
@@ -87,7 +90,13 @@ function coinLibCoin() {
     })
     .then(function(data) {
         console.log(data)
+        $('#current-value').html('Current Value: $' + data.price);
+        $('#high-24hr').html('Highest Value in past 24hr: $' + data.high_24h)
+        $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
+        $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
+        $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
+        $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
     })
-}
+})
 
-// coinLibCoin();
+//coinLibCoin();
