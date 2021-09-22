@@ -34,16 +34,16 @@
 
     <main><!-- Style/class relating to bootstrap container -->
         <div><!-- Style/class relating to bootstrap row -->
-            <div class ="crypto"><!-- Style/class relating to bootstrap column 3 -->
+            <div class="crypto"><!-- Style/class relating to bootstrap column 3 -->
                 <!-- only shows if in home or historical trades option -->
                 <label for="crypto" class="home historical-trades hide">Select your crypto:</label>
-                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades hide"></input>
+                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades hide">/>
                 <!-- input that shows up if historical trading is selected-->
                 <!-- input that shows up when in home or historical option -->
-                <label for="money-type" class="home historical-trades hide">Select your crypto:</label>
-                <input type="text" name="money-type" id="money-type" class="home historical-trades hide" placeholder="example: USD, EUR, JPY">
+                <label for="money-type" class="home historical-trades hide">Select your type of currency:</label>
+                <input type="text" name="money-type" id="money-type" class="home historical-trades hide" placeholder="example: USD, EUR, JPY" />
                 <label for="date" class="hide historical-trades">Select the historical date:</label>
-                <input type="date" class="hide historical-trades">
+                <input type="date" name="crypto-date" class="hide historical-trades" />
                 
 
             </div>
@@ -78,6 +78,26 @@
                     <p id="ranked-name" class="ranked-list hide">content</p><!-- (coinlib coinlist endpoint) data.coins[i].name -->
                     <p id="ranked-price" class="ranked-list hide">here</p><!-- (coinlib coinlist endpoint) data.coins[i].price -->
                     <p id="ranked-24h-change" class="ranked-list hide">!</p><!-- (coinlib coinlist endpoint) data.coins[i].delta_24h -->
+                </div>
+            </div>
+        </div>
+
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 12 -->
+                <div id="gainers-list-actual">
+                    <!-- we can choose to dynamically create these if we want to -->
+                    <!-- list of 20 gainers whose price has increased by highest percentage since previous days close -->
+                    <!-- polygon snapshot gainers -->
+                </div>
+            </div>
+        </div>
+
+        <div><!-- Style/class relating to bootstrap row -->
+            <div><!-- Style/class relating to bootstrap column 12 -->
+                <div id="losers-list-actual">
+                    <!-- we can choose to dynamically create these if we want to -->
+                    <!-- list of 20 losers whose price has decreased by highest percentage since previous days close -->
+                    <!-- polygon snapshot losers -->
                 </div>
             </div>
         </div>
