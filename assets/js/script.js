@@ -1,4 +1,14 @@
 //function calls are commented out so the api keys aren't used every time we load the page
+var testBtn = $("#test-btn");
+
+testBtn.on("click", function(){
+    var cryptoSelect = $("#user-crypto-name").val().trim();
+    var currencySelect = $("#money-type").val().trim(); 
+    var dateSelect = $("#crypto-date").val().trim();
+    
+    polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
+});
+
 
 // function that changes content of page depending on the option selected
 $(document).on('change', '.toggle', function() {
@@ -10,17 +20,12 @@ $(document).on('change', '.toggle', function() {
   $(document).ready(function(){
       $('.toggle').trigger('change');
   });
-//function to fetch plolygon daily open/close prices for selected crypto
-//in the final product the variables crypto, currency, and date will be passed into the function as arguments
-function polygonOpenClose(){   
-    var apiKey = "HHLDi1tJ64VEg747dVDxQXa6RB8ezQZF";
-    //variable to hold name of crypto being searched. This will come from the input value on the webpage
-    var crypto = "BTC";
-    //variable to hold currency user wants crypto value as. This will come from the input value on the webpage
-    var currency = "USD";
-    //variable to hold the date the user wants the crypto prices from. This will come from the input value on the webpage
-    var date = "2020-10-25";
+  
 
+//function to fetch plolygon daily open/close prices for selected crypto
+function polygonOpenClose(crypto, currency, date){   
+    var apiKey = "HHLDi1tJ64VEg747dVDxQXa6RB8ezQZF";
+    
     var openCloseUrl = "https://api.polygon.io/v1/open-close/crypto/" + crypto + "/" + currency + "/" + date + "?adjusted=true&apiKey=" + apiKey;
 
     fetch(openCloseUrl).then(function(response){
