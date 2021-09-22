@@ -24,10 +24,6 @@
                         <!-- above value would direct user to home page-->
                         <option id="ranked-list" value="ranked-list" data-show=".ranked-list">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
                         <!-- above option would create new div for each coin and order 1-100 -->
-                        <option value="gainers-list" data-show="home">Gainers</option><!-- polygon API-->
-                        <!-- above option would generate the list of top 20 gainers of the day -->
-                        <option value="losers-list" data-show="home">Losers</option><!-- polygon API-->
-                        <!-- above option would generate the list of top 20 gainers of the day -->
                         <option value="historical-trades" data-show=".historical-trades">Historical Trades</option><!-- polygon API-->
                         <!-- above option would generate -->
                     </select>
@@ -38,11 +34,10 @@
 
     <main><!-- Style/class relating to bootstrap container -->
         <div><!-- Style/class relating to bootstrap row -->
-            <div class="crypto"><!-- Style/class relating to bootstrap column 3 -->
+            <div class ="crypto"><!-- Style/class relating to bootstrap column 3 -->
                 <!-- only shows if in home or historical trades option -->
                 <label for="crypto" class="home historical-trades hide">Select your crypto:</label>
-                <input type="text" name="crypto-coin" id="crypto-coin" class="home historical-trades hide">
-                    <!-- Dynamically create list values from fetch call or alrady have preloaded values? -->
+                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades hide"></input>
                 <!-- input that shows up if historical trading is selected-->
                 <label for="date" class="hide historical-trades">Select the historical date:</label>
                 <input type="date" class="hide historical-trades">
@@ -78,26 +73,6 @@
                     <p id="ranked-name" class="ranked-list hide">content</p><!-- (coinlib coinlist endpoint) data.coins[i].name -->
                     <p id="ranked-price" class="ranked-list hide">here</p><!-- (coinlib coinlist endpoint) data.coins[i].price -->
                     <p id="ranked-24h-change" class="ranked-list hide">!</p><!-- (coinlib coinlist endpoint) data.coins[i].delta_24h -->
-                </div>
-            </div>
-        </div>
-
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 12 -->
-                <div id="gainers-list-actual">
-                    <!-- we can choose to dynamically create these if we want to -->
-                    <!-- list of 20 gainers whose price has increased by highest percentage since previous days close -->
-                    <!-- polygon snapshot gainers -->
-                </div>
-            </div>
-        </div>
-
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 12 -->
-                <div id="losers-list-actual">
-                    <!-- we can choose to dynamically create these if we want to -->
-                    <!-- list of 20 losers whose price has decreased by highest percentage since previous days close -->
-                    <!-- polygon snapshot losers -->
                 </div>
             </div>
         </div>
