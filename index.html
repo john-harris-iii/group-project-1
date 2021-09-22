@@ -44,8 +44,13 @@
                 <input type="text" name="crypto-coin" id="crypto-coin" class="home historical-trades hide">
                     <!-- Dynamically create list values from fetch call or alrady have preloaded values? -->
                 <!-- input that shows up if historical trading is selected-->
+                <!-- input that shows up when in home or historical option -->
+                <label for="money-type" class="home historical-trades hide">Select your crypto:</label>
+                <input type="text" name="money-type" id="money-type" class="home historical-trades hide" placeholder="example: USD, EUR, JPY">
                 <label for="date" class="hide historical-trades">Select the historical date:</label>
                 <input type="date" class="hide historical-trades">
+                
+
             </div>
             <div><!-- Style/class relating to bootstrap column 6 -->
                 <h4 id="currency-name"></h4>
