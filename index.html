@@ -12,19 +12,19 @@
 <body>
 
     <header><!-- Style/class relating to bootstrap container -->
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 12 -->
-                <div>
+        <div class="grid-container"><!-- Style/class relating to bootstrap row -->
+            <div class="grid-x grid-margin-x align-center-middle"><!-- Style/class relating to bootstrap column 12 -->
+                <div class="cell large-10">
                     <h1><a href="./index.html">CryptoWatcher</a></h1>
                 </div>
-                <div>
-                    <span class="fi-list"></span><!-- Have drop down for following selections -->
-                    <select name="menu-dd" id="menu-dd">
-                        <option id="home" value="home">Home</option>
+                <div class="cell large-2 ">
+                
+                    <select name="menu-dd" id="menu-dd" class="toggle" data-target=".crypto">
+                        <option id="home" value="home" class="home">Home</option>
                         <!-- above value would direct user to home page-->
-                        <option id="ranked-list" value="ranked-list">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
+                        <option id="ranked-list" value="ranked-list" data-show="ranked-list ">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
                         <!-- above option would create new div for each coin and order 1-100 -->
-                        <option value="historical-trades">Historical Trades</option><!-- polygon API-->
+                        <option value="historical-trades" data-show=".historical-trades">Historical Trades</option><!-- polygon API-->
                         <!-- above option would generate -->
                     </select>
                 </div>
@@ -32,26 +32,34 @@
         </div>
     </header>
 
-    <main><!-- Style/class relating to bootstrap container -->
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 3 -->
+    <main class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-2">
                 <label for="crypto">Select your crypto:</label>
                 <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:"></input>
-            </div>
-            <div><!-- Style/class relating to bootstrap column 6 -->
-                <h4 id="currency-name"></h4>
-                <div id="currency-information"> <!-- From coinlib API &/or polygon API -->
-                    <p id="rank"></p>
-                    <p id="current-value"></p><!--(coinlib coin endpoint) data.price -->
-                    <p id="high-24hr"></p><!-- (coinlib coin endpoint) data.high_24h -->
-                    <p id="change-1h"></p><!-- (coinlib coin endpoint) data.delta_1h -->
-                    <p id="change-24h"></p><!-- (coinlib coin endpoint) data.delta_24h -->
-                    <p id="change-7d"></p><!-- (coinlib coin endpoint) data.delta_7d -->
-                    <p id="change-30d"></p><!-- (coinlib coin endpoint) data.delta_30d -->
-                    <p id="recommendation"><!-- To buy now or not maybe? --></p>
+                <!-- input that shows up if historical trading is selected-->
+                <div class="crypto">
+                <label for="date" class="hide historical-trades">Select the historical date</label>
+                <input type="date" class="hide historical-trades">
                 </div>
             </div>
-            <div><!-- Style/class relating to bootstrap column 3 -->
+            <div class="cell large-8">
+                <div class="card">
+                    <div class="card-divider align-justify">
+                        <h4 id="currency-name">Bitcoin (BTC)</h4>
+                        <h4 id="currency-rank">Rank: 1</h4>
+                    </div>
+                    <div class="card-section">
+                        <p id="current-value">Current Value: $3500</p><!--(coinlib coin endpoint) data.price -->
+                        <p id="high-24hr">Highest Value in past 24hr: $3600</p><!-- (coinlib coin endpoint) data.high_24h -->
+                        <p id="change-1h">Last Hour Change: +1.03%</p><!-- (coinlib coin endpoint) data.delta_1h -->
+                        <p id="change-24h">Last 24hr Change: -1.99%</p><!-- (coinlib coin endpoint) data.delta_24h -->
+                        <p id="change-7d">Last 7 Day Change: +2.63%</p><!-- (coinlib coin endpoint) data.delta_7d -->
+                        <p id="change-30d">Last 24 Day Change: +6.23%</p><!-- (coinlib coin endpoint) data.delta_30d -->
+                    </div>
+                </div>
+            </div>
+            <div class="cell large-2">
                 <h5>CryptoTickers:</h5>
                 <!-- create a new ticker for each crypto searched, will show green if increasing or red if decreasing? as well as % change -->
                 <!-- we can dynamically create by selection/search the options below -->
@@ -60,9 +68,11 @@
                 <p id="today_change_percent"></p><!-- from snapshot-ticker in polygon -->
             </div>
         </div>
+    </main>
 
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 12 -->
+    <section class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-12">
                 <div id="ranked-list-actual"><!-- from drop down on front page -->
                     <!-- we can choose to dynamically create these if we want to -->
                     <h6 id="ranked-rank"></h6><!-- (coinlib coinlist endpoint) data.coins[i].rank -->
@@ -72,18 +82,21 @@
                 </div>
             </div>
         </div>
+    </section>
 
-        <div>
-            <div>
+    <section class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-12">
                 <div id="historical-trades-actual">
                     <!-- we can choose to dynamically create these if we want to -->
                     <!-- from polygon -->
                 </div>
             </div>
         </div>
-    </main>
-    
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
