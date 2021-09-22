@@ -19,12 +19,12 @@
                 </div>
                 <div>
                     <span class="fi-list"></span><!-- Have drop down for following selections -->
-                    <select name="menu-dd" id="menu-dd">
-                        <option id="home" value="home">Home</option>
+                    <select name="menu-dd" id="menu-dd" class="toggle" data-target=".crypto">
+                        <option id="home" value="home" class="home">Home</option>
                         <!-- above value would direct user to home page-->
-                        <option id="ranked-list" value="ranked-list">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
+                        <option id="ranked-list" value="ranked-list" data-show="ranked-list ">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
                         <!-- above option would create new div for each coin and order 1-100 -->
-                        <option value="historical-trades">Historical Trades</option><!-- polygon API-->
+                        <option value="historical-trades" data-show=".historical-trades">Historical Trades</option><!-- polygon API-->
                         <!-- above option would generate -->
                     </select>
                 </div>
@@ -37,6 +37,11 @@
             <div><!-- Style/class relating to bootstrap column 3 -->
                 <label for="crypto">Select your crypto:</label>
                 <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:"></input>
+                <!-- input that shows up if historical trading is selected-->
+                <div class="crypto">
+                <label for="date" class="hide historical-trades">Select the historical date</label>
+                <input type="date" class="hide historical-trades">
+                </div>
             </div>
             <div><!-- Style/class relating to bootstrap column 6 -->
                 <h4 id="currency-name"></h4>

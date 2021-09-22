@@ -1,5 +1,15 @@
 //function calls are commented out so the api keys aren't used every time we load the page
 
+// function that changes content of page depending on the option selected
+$(document).on('change', '.toggle', function() {
+    var option = $(this).data('target');
+    var show = $("option:selected", this).data('show');
+    $(option).children().addClass('hide');
+    $(show).removeClass('hide');
+  });
+  $(document).ready(function(){
+      $('.toggle').trigger('change');
+  });
 //function to fetch plolygon daily open/close prices for selected crypto
 //in the final product the variables crypto, currency, and date will be passed into the function as arguments
 function polygonOpenClose(){   
