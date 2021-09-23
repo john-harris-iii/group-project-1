@@ -7,13 +7,17 @@ var currencySelect = $('#money-type');
 var testBtn = $("#test-btn");
 
 testBtn.on("click", function(){
-    var cryptoSelect = $("#user-crypto-name").val().trim();
-    var currencySelect = $("#money-type").val().trim(); 
+    var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
+    var currencySelect = $("#money-type").val().toUpperCase().trim(); 
     var dateSelect = $("#crypto-date").val().trim();
-    
-    polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
-});
 
+    if(cryptoSelect !== "" && currencySelect !== "" && dateSelect !== ""){
+        polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
+    }
+    else{
+        console.log("plz enter a date for history data");
+    }
+});
 
 // function that changes content of page depending on the option selected
 $(document).on('change', '.toggle', function() {
@@ -40,7 +44,7 @@ function polygonOpenClose(crypto, currency, date){
             })
         }
         else{
-            console.log("you suck");
+            console.log("your api sucks");
         }
     })
 };
@@ -69,7 +73,7 @@ var coinlibGlobalURL = 'https://coinlib.io/api/v1/global?key=' + apiKey + '&pref
 
 function coinLibCoinList() {
     var apiKey = `adae3d665d605d5a`;
-    var coinlibCoinListURL = `https://coinlib.io/api/v1/coinlist?key=${apiKey}&pref=BTC&page=1&order=volume_desc`;
+    var coinlibCoinListURL = `https://coinlib.io/api/v1/coinlist?key=${apiKey}&pref=BTC&page=1&order=rank_asc`;
 
     fetch(coinlibCoinListURL)
     .then(function(response) {
@@ -80,7 +84,7 @@ function coinLibCoinList() {
     })
 }
 
-//coinLibCoinList();
+// coinLibCoinList();
 
 
 $('#test-btn').click(function coinLibCoin() {
