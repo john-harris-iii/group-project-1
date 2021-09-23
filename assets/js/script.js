@@ -101,12 +101,31 @@ $('#test-btn').click(function coinLibCoin() {
     })
     .then(function(data) {
         console.log(data)
-        $('#current-value').html('Current Value: $' + data.price);
-        $('#high-24hr').html('Highest Value in past 24hr: $' + data.high_24h)
-        $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
-        $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
-        $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
-        $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
+        $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
+        $('#currency-rank').html('Rank: ' + data.rank)
+        $('#current-value').html('Current Value: $' + parseFloat(data.price).toFixed(2));
+        $('#high-24hr').html('Highest Value in past 24hr: $' + parseFloat(data.high_24h).toFixed(2));
+        if (data.delta_1h > 0) {
+            $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%')
+        }
+        if (data.delta_1h < 0) {
+            $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
+            }
+        if (data.delta_24h > 0) {
+            $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
+        }
+        if (data.delta_7d > 0) {
+            $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
+        }
+        if (data.delta_7d < 0) {
+            $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
+            }
+        if (data.delta_30d > 0) {
+            $('#change-30d').html('Last 30d change: +' + data.delta_30d + '%')
+        }
+        if (data.delta_30d < 0) {
+            $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
+        }
     })
 })
 
