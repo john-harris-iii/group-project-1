@@ -41,7 +41,7 @@ function polygonOpenClose(crypto, currency, date){
     fetch(openCloseUrl).then(function(response){
         if(response.ok){
             response.json().then(function(data){
-                historicData(data);
+                historicData(data, date);
             })
         }
         else{
@@ -51,24 +51,25 @@ function polygonOpenClose(crypto, currency, date){
 };
 
 //function to put polygon historic info on page
-function historicData(data){
+function historicData(data, date){
+    historicTradesEl.innerText = "";
     //create div to hold historic info
     var historicData = document.createElement("div");
     //variable to hold selected date
-    var selectedDate = document.createElement("p");
-    selectedDate.innerText = data.day
+    var selectedDate = document.createElement("p");;
+    selectedDate.innerText = date;
     historicData.appendChild(selectedDate);
     //variable to hold days opening price
     var openingPrice = document.createElement("p");
-    openingPrice.innerText = "Opening Price: " + data.open
+    openingPrice.innerText = "Opening Price: " + (Math.round(data.open * 100) / 100);
     historicData.appendChild(openingPrice);
     //variable to hold days closing price
     var closingPrice = document.createElement("p");
-    closingPrice.innerText = "Closing Price: " + data.close;
+    closingPrice.innerText = "Closing Price: " + (Math.round(data.close * 100) / 100);
     historicData.appendChild(closingPrice);
     //variable to hold the days price change
     var priceChange = document.createElement("p");
-    priceChange.innerText = "Price Change: " + (data.close - data.open);
+    priceChange.innerText = "Price Change: " + (Math.round((data.close - data.open) *100) / 100);
     historicData.appendChild(priceChange);
     //append historic info to html
     historicTradesEl.appendChild(historicData);
