@@ -1,3 +1,63 @@
 .hide {
     display: none;
 }
+
+.accordion-item {
+    background-color: #3f3f3f;
+}
+
+.coin-rank {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.coin-rank:visited {
+    color: white;
+}
+
+.coin-title {
+    font-weight: normal;
+}
+
+.accordion-content {
+    background-color: #dddddd;
+}
+
+.coin-symbol-text,
+.coin-price-text,
+.coin-24hr-change-text,
+.coin-volume-text,
+.coin-market-cap-text,
+.coin-percent-tbv-text {
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+.coin-symbol-value,
+.coin-price-value,
+.coin-24hr-change-value,
+.coin-volume-value,
+.coin-market-cap-value,
+.coin-percent-tbv-value {
+    font-size: 1.25rem;
+    font-style: normal;
+}
+
+
+.span_negative {
+    color: white;
+    background-color: red;
+    width: fit-content;
+    border-radius: 3px;
+    padding: 0 5px;
+}
+
+.span_positive {
+    color: white;
+    background-color: green;
+    width: fit-content;
+    border-radius: 3px;
+    padding: 0 5px;
+}

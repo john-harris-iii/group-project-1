@@ -297,9 +297,22 @@ function rankedListAccordion() {
 }
 
 $("#menu-dd").on("change", function () {
-    if ($(this).val() === "ranked-list") {
+    if ($(this).val() === "home") {
+        // Clear content so new content can be placed
+        cardDividerInfo.innerHTML = "";
+        cardSectionInfo.innerHTML = "";
+        // function for home menu
+    }
+    else if ($(this).val() === "ranked-list") {
+        // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
         rankedListAccordion();
+    }
+    else if ($(this).val() === "historical-trades") {
+        // Clear content so new content can be placed
+        cardDividerInfo.innerHTML = "";
+        cardSectionInfo.innerHTML = "";
+        // function for historical trades menu
     }
 }) 
