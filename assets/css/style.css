@@ -2,6 +2,19 @@
     display: none;
 }
 
+.card-style {
+    background-color: #b6b6b6;
+
+}
+
+.divider-info {
+    justify-content: center;
+}
+
+#ranked-list-title {
+    font-weight: bold;
+}
+
 .accordion-item {
     background-color: #3f3f3f;
 }
@@ -21,7 +34,7 @@
 }
 
 .accordion-content {
-    background-color: #dddddd;
+    background-color: #b6b6b6;
 }
 
 .coin-symbol-text,
