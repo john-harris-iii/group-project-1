@@ -57,7 +57,7 @@ function historicData(data, date){
     var historicData = document.createElement("div");
     //variable to hold selected date
     var selectedDate = document.createElement("p");;
-    selectedDate.innerText = date;
+    selectedDate.innerText = data.symbol + " " + date;
     historicData.appendChild(selectedDate);
     //variable to hold days opening price
     var openingPrice = document.createElement("p");
