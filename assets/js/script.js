@@ -5,6 +5,12 @@ var cryptoSelect = $('#user-crypto-name');
 var currencySelect = $('#money-type');
 // john vars
 var testBtn = $("#test-btn");
+// tniemeye19 vars
+var dropDownMenuEl = document.getElementById("menu-dd");
+var rankedButtonBtn = document.getElementById("ranked-button");
+var cardDividerInfo = document.querySelector(".divider-info");
+var cardSectionInfo = document.querySelector(".section-info");
+
 
 testBtn.on("click", function(){
     var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
@@ -130,3 +136,170 @@ $('#test-btn').click(function coinLibCoin() {
 })
 
 //coinLibCoin();
+
+function rankedListAccordion() {
+    var apiKey = `adae3d665d605d5a`;
+
+    var rankedListURL = `https://coinlib.io/api/v1/coinlist?key=${apiKey}&page=1&order=rank_asc`
+
+    fetch(rankedListURL)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(data) {
+        console.log(data)
+        console.log(data.coins.length)
+
+        // Ranked List div (to be put in as title for card)
+        var rankedListTitleEl = document.createElement("h4");
+        rankedListTitleEl.setAttribute("id", "ranked-list-title");
+        $(".divider-info").append(rankedListTitleEl);
+
+        // Ranked List div (to be put in as info for card)
+        var rankedListActualEl = document.createElement("div");
+        rankedListActualEl.setAttribute("id", "ranked-list-actual");
+        $(".section-info").append(rankedListActualEl);
+
+        // ACCORDION LIST (ul element)
+        var accordion_ul = document.createElement("ul");
+        accordion_ul.setAttribute("class", "accordion");
+        accordion_ul.setAttribute("data-accordion", "");
+        accordion_ul.setAttribute("data-allow-all-closed", "true");
+        rankedListActualEl.appendChild(accordion_ul);
+
+        for (var i = 0; i <= (data.coins.length - 1); i++) {
+            // Initialize variables in order to get appropriate data from fetch
+            var singleCoinRank = data.coins[i].rank;
+            var singleCoinName = data.coins[i].name;
+            var singleCoinSymbol = data.coins[i].symbol; 
+            var singleCoinPrice = data.coins[i].price;
+            var singleCoin24hrChange = data.coins[i].delta_24h;
+            var singleCoinVolume = data.coins[i].volume_24h; 
+            var singleCoinMarketCap = data.coins[i].market_cap;  
+
+            // Initialize variables. These create the format for the accordion list for foundation css.
+            var accordion_li = document.createElement("li");
+            var accordion_a = document.createElement("a");
+            var accordion_a_span = document.createElement("span");
+            var accordion_div = document.createElement("div");
+            var coinSymbolP = document.createElement("p"); 
+            var coinSymbolP_Span = document.createElement("span");
+            var coinPriceP = document.createElement("p");
+            var coinPriceP_Span = document.createElement("span");
+            var coin24hrChangeP = document.createElement("p");
+            var coin24hrChangeP_Span = document.createElement("span");
+            var coinVolumeP = document.createElement("p"); //Total value of crypto traded in the past 24hrs - not done
+            var coinVolumeP_Span = document.createElement("span");
+            var coinMarketCapP = document.createElement("p"); //Total value of all coins mined - not done
+            var coinMarketCapP_Span = document.createElement("span");
+
+            // ACCORDION ITEM (li element)
+            accordion_li.classList.add("accordion-item");
+            accordion_li.classList.add("index_li" + i);
+            accordion_li.setAttribute("data-accordion-item", "");
+            $(".accordion").append(accordion_li);
+
+            // ACCORDION TITLE (a element) Coin Rank
+            accordion_a.setAttribute("href", "#");
+            accordion_a.classList.add("accordion-title");
+            accordion_a.classList.add("coin-rank");
+            accordion_a.classList.add("index_a" + i);
+            accordion_a.innerHTML = singleCoinRank + ". ";
+            $(".index_li" + i).append(accordion_a);
+
+            // ---- SPAN FOR Coin Rank (inputs Coin Name)
+            accordion_a_span.setAttribute("class", "coin-title");
+            accordion_a_span.innerHTML = singleCoinName;
+            $(".index_a" + i).append(accordion_a_span);
+
+            // ACCORDION CONTENT (div element)
+            accordion_div.classList.add("accordion-content");
+            accordion_div.classList.add("index_div" + i);
+            accordion_div.setAttribute("data-tab-content", "");
+            $(".index_li" + i).append(accordion_div);
+
+            // ACCORDION CONTENT (p element) Coin Symbol
+            coinSymbolP.classList.add("coin-symbol-text");
+            coinSymbolP.classList.add("index_symbol" + i);
+            coinSymbolP.innerHTML = "Symbol: ";
+            $(".index_div" + i).append(coinSymbolP);
+
+            // ---- SPAN FOR Coin Symbol
+            coinSymbolP_Span.classList.add("coin-symbol-value");
+            coinSymbolP_Span.innerHTML = singleCoinSymbol;
+            $(".index_symbol" + i).append(coinSymbolP_Span);
+
+            // ACCORDION CONTENT (p element) Coin Price
+            coinPriceP.classList.add("coin-price-text");
+            coinPriceP.classList.add("index_price" + i);
+            coinPriceP.innerHTML = "Current Price: ";
+            $(".index_div" + i).append(coinPriceP);
+
+            // ---- SPAN FOR Coin Price
+            coinPriceP_Span.classList.add("coin-price-value");
+            var d_singleCoinPrice = parseFloat(singleCoinPrice).toFixed(2);
+            var cd_singleCoinPrice = d_singleCoinPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            coinPriceP_Span.innerHTML = "$" + cd_singleCoinPrice;
+            $(".index_price" + i).append(coinPriceP_Span);
+
+            // ACCORDION CONTENT (p element) Coin 24hr Change
+            coin24hrChangeP.classList.add("coin-24hr-change-text");
+            coin24hrChangeP.classList.add("index_change" + i);
+            coin24hrChangeP.innerHTML = "Percent (%) change in last 24hr: ";
+            $(".index_div" + i).append(coin24hrChangeP);
+
+            // ---- SPAN FOR Coin 24hr Change
+            coin24hrChangeP_Span.classList.add("coin-24hr-change-value");
+            coin24hrChangeP_Span.classList.add("index_change_value" + i);
+            var d_singleCoin24hrChange = parseFloat(singleCoin24hrChange).toFixed(2);
+            var cd_singleCoin24hrChange = d_singleCoin24hrChange.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            coin24hrChangeP_Span.innerHTML = cd_singleCoin24hrChange + "%";
+            $(".index_change" + i).append(coin24hrChangeP_Span);
+            // SPAN FOR Coin 24hr Change Main Style
+            if (singleCoin24hrChange >= 0) {
+
+                coin24hrChangeP_Span.classList.add("span_positive");
+            } else {
+                coin24hrChangeP_Span.classList.add("span_negative");
+            }
+
+            // ACCORDION CONTENT (p element) Coin Volume
+            coinVolumeP.classList.add("coin-volume-text");
+            coinVolumeP.classList.add("index_volume" + i);
+            coinVolumeP.innerHTML = "Coin Volume (last 24hrs): ";
+            $(".index_div" + i).append(coinVolumeP);
+
+            // ---- SPAN FOR Coin Volume
+            coinVolumeP_Span.classList.add("coin-volume-value");
+            var d_singleCoinVolume = parseFloat(singleCoinVolume).toFixed(2);
+            var cd_singleCoinVolume = d_singleCoinVolume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            coinVolumeP_Span.innerHTML = cd_singleCoinVolume;
+            $(".index_volume" + i).append(coinVolumeP_Span);
+
+            // ACCORDION CONTENT (p element) Coin Market Cap
+            coinMarketCapP.classList.add("coin-market-cap-text");
+            coinMarketCapP.classList.add("index_marketcap" + i);
+            coinMarketCapP.innerHTML = "Market Cap: ";
+            $(".index_div" + i).append(coinMarketCapP);
+
+            // ---- SPAN FOR Coin Market Cap
+            coinMarketCapP_Span.classList.add("coin-market-cap-value");
+            var d_singleCoinMarketCap = parseFloat(singleCoinMarketCap).toFixed(2);
+            var cd_singleCoinMarketCap = d_singleCoinMarketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            coinMarketCapP_Span.innerHTML = "$" + cd_singleCoinMarketCap;
+            $(".index_marketcap" + i).append(coinMarketCapP_Span)
+        }
+        // Style from foundation script call has to be called AFTER format is implemented in order for accordion to work.
+        $(document).foundation();
+
+        // Credit for commas in numbers: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+    })
+}
+
+$("#menu-dd").on("change", function () {
+    if ($(this).val() === "ranked-list") {
+        cardDividerInfo.innerHTML = "";
+        cardSectionInfo.innerHTML = "";
+        rankedListAccordion();
+    }
+}) 
