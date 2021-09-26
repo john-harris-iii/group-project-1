@@ -265,7 +265,7 @@ function rankedListAccordion() {
             // ACCORDION CONTENT (p element) Coin Symbol
             coinSymbolP.classList.add("coin-symbol-text");
             coinSymbolP.classList.add("index_symbol" + i);
-            coinSymbolP.innerHTML = "Symbol: ";
+            coinSymbolP.innerHTML = "Symbol:";
             $(".index_div_text" + i).append(coinSymbolP);
             
             // ACCORDION CONTENT (p element) Coin Price
@@ -277,19 +277,19 @@ function rankedListAccordion() {
             // ACCORDION CONTENT (p element) Coin 24hr Change
             coin24hrChangeP.classList.add("coin-24hr-change-text");
             coin24hrChangeP.classList.add("index_change" + i);
-            coin24hrChangeP.innerHTML = "Percent (%) change in last 24hr: ";
+            coin24hrChangeP.innerHTML = "24hr Change:";
             $(".index_div_text" + i).append(coin24hrChangeP);
             
             // ACCORDION CONTENT (p element) Coin Volume
             coinVolumeP.classList.add("coin-volume-text");
             coinVolumeP.classList.add("index_volume" + i);
-            coinVolumeP.innerHTML = "Coin Volume (last 24hrs): ";
+            coinVolumeP.innerHTML = "24hrs Coin Volume:";
             $(".index_div_text" + i).append(coinVolumeP);
             
             // ACCORDION CONTENT (p element) Coin Market Cap
             coinMarketCapP.classList.add("coin-market-cap-text");
             coinMarketCapP.classList.add("index_marketcap" + i);
-            coinMarketCapP.innerHTML = "Market Cap: ";
+            coinMarketCapP.innerHTML = "Market Cap:";
             $(".index_div_text" + i).append(coinMarketCapP);
             
             // ---- SPAN FOR Coin Symbol

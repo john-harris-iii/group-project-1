@@ -28,11 +28,14 @@
     display: inline-block;
     width: 49%;
     text-align: center;
+    border: none;
+
 }
 
 .acc_div_vars {
     display: inline-block;
     width: 49%;
+    padding-left: 5px;
 }
 
 .clear {
