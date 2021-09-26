@@ -19,6 +19,26 @@
     background-color: #3f3f3f;
 }
 
+.acc_div_main {
+    box-sizing: inline-block;
+    height: fit-content;
+}
+
+.acc_div_text {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
+
+.acc_div_vars {
+    display: inline-block;
+    width: 49%;
+}
+
+.clear {
+    clear: both;
+}
+
 .coin-rank {
     font-weight: bold;
     font-size: 1.25rem;
@@ -34,7 +54,7 @@
 }
 
 .accordion-content {
-    background-color: #b6b6b6;
+    background-color: #dddddd;
 }
 
 .coin-symbol-text,
@@ -45,7 +65,9 @@
 .coin-percent-tbv-text {
     font-weight: bold;
     font-style: italic;
-    text-align: center;
+    font-size: 1.1rem;
+    text-align: right;
+    margin: 5px 0;
 }
 
 .coin-symbol-value,
@@ -54,10 +76,12 @@
 .coin-volume-value,
 .coin-market-cap-value,
 .coin-percent-tbv-value {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-style: normal;
+    text-align: left;
+    display: block;
+    margin: 5px 0;
 }
-
 
 .span_negative {
     color: white;
