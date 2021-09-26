@@ -254,8 +254,10 @@ function rankedListAccordion() {
             $(".index_div_main" + i).append(accordion_div_text);
             
             // ACCORDION CONTENT (div element) vars
+            accordion_div_vars.classList.add("accordion-content");
             accordion_div_vars.classList.add("acc_div_vars");
             accordion_div_vars.classList.add("index_div_vars" + i);
+            accordion_div_vars.setAttribute("data-tab-content", "");
             $(".index_div_main" + i).append(accordion_div_vars);
             
             var accordion_div_clear = document.createElement("div");
@@ -277,13 +279,13 @@ function rankedListAccordion() {
             // ACCORDION CONTENT (p element) Coin 24hr Change
             coin24hrChangeP.classList.add("coin-24hr-change-text");
             coin24hrChangeP.classList.add("index_change" + i);
-            coin24hrChangeP.innerHTML = "24hr Change:";
+            coin24hrChangeP.innerHTML = "Change 24hr:";
             $(".index_div_text" + i).append(coin24hrChangeP);
             
             // ACCORDION CONTENT (p element) Coin Volume
             coinVolumeP.classList.add("coin-volume-text");
             coinVolumeP.classList.add("index_volume" + i);
-            coinVolumeP.innerHTML = "24hrs Coin Volume:";
+            coinVolumeP.innerHTML = "Coin Vol Last 24hr:";
             $(".index_div_text" + i).append(coinVolumeP);
             
             // ACCORDION CONTENT (p element) Coin Market Cap
