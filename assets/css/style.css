@@ -2,21 +2,50 @@
     display: none;
 }
 
-.card-style {
-    background-color: #b6b6b6;
+body {
+    background-color: rgb(14, 28, 39);
+}
 
+.title-menu-container {
+    border-bottom: 3px solid rgb(97, 216, 0);
+}
+
+.page-title-name a {
+    color: rgb(97, 216, 0);
+    text-decoration: none;
+}
+
+.card-style {
+    background-color: rgb(14, 28, 39);
+    border: none;
 }
 
 .divider-info {
     justify-content: center;
+    background-color: rgb(14, 28, 39);
 }
 
 #ranked-list-title {
     font-weight: bold;
+    color: white;
 }
 
 .accordion-item {
-    background-color: #3f3f3f;
+    background-color: rgb(14, 28, 39);
+}
+
+.coin-rank {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.coin-rank:visited {
+    color: white;
+    background-color: rgb(97, 216, 0);
+}
+
+.coin-title {
+    font-weight: normal;
 }
 
 .acc_div_main {
@@ -42,20 +71,6 @@
 
 .clear {
     clear: both;
-}
-
-.coin-rank {
-    font-weight: bold;
-    font-size: 1.25rem;
-    color: white;
-}
-
-.coin-rank:visited {
-    color: white;
-}
-
-.coin-title {
-    font-weight: normal;
 }
 
 .accordion-content {

@@ -12,6 +12,7 @@ var cardDividerInfo = document.querySelector(".divider-info");
 var cardSectionInfo = document.querySelector(".section-info");
 
 var historicTradesEl = document.querySelector("#historical-trades-actual");
+var tickerEl = document.querySelector("#tickers");
 
 testBtn.on("click", function(){
     var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
@@ -170,40 +171,62 @@ $('#test-btn').click(function coinLibCoin() {
         return response.json()
     })
     .then(function(data) {
-        console.log(data)
-        $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
-        $('#currency-rank').html(' Rank: ' + data.rank)
-        $('#current-value').html('Current Value: $' + parseFloat(data.price).toFixed(2));
-        $('#high-24hr').html('Highest Value in past 24hr: $' + parseFloat(data.high_24h).toFixed(2));
-       // if (isNaN) {}
-        if (data.delta_1h > 0) {
-            $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%');
-        }
-        if (data.delta_1h < 0) {
-            $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%');
-            }
-        if (data.delta_24h > 0) {
-            $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
-        }
-        if (data.delta_24h < 0) {
-            $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
-        }
-        if (data.delta_7d > 0) {
-            $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
-        }
-        if (data.delta_7d < 0) {
-            $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
-            }
-        if (data.delta_30d > 0) {
-            $('#change-30d').html('Last 30d change: +' + data.delta_30d + '%')
-        }
-        if (data.delta_30d < 0) {
-            $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
-        }
+        coinInfo(data);
+        cryptoTicker(data);
     })
 })
 
-//coinLibCoin();
+//moved David's code to append data to main page into it's own function 
+function coinInfo(data){
+    $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
+    $('#currency-rank').html('Rank: ' + data.rank)
+    $('#current-value').html('Current Value: $' + parseFloat(data.price).toFixed(2));
+    $('#high-24hr').html('Highest Value in past 24hr: $' + parseFloat(data.high_24h).toFixed(2));
+    if (data.delta_1h > 0) {
+        $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%')
+    }
+    if (data.delta_1h < 0) {
+        $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
+        }
+    if (data.delta_24h > 0) {
+        $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
+    }
+    if (data.delta_7d > 0) {
+        $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
+    }
+    if (data.delta_7d < 0) {
+        $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
+        }
+    if (data.delta_30d > 0) {
+        $('#change-30d').html('Last 30d change: +' + data.delta_30d + '%')
+    }
+    if (data.delta_30d < 0) {
+        $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
+    }
+}
+
+//function to create crypto ticker and append to page
+function cryptoTicker(data){
+    console.log(data);
+    
+    var tickerDiv = document.createElement("div");
+    tickerDiv.style.backgroundColor = "#3f3f3f";
+    tickerDiv.style.color = "white";
+    tickerDiv.style.padding = "2px"
+    tickerDiv.style.margin = "2px 0 2px 0"
+    var tickerTitle = document.createElement("h4");
+    tickerTitle.innerText = data.symbol;
+    tickerDiv.appendChild(tickerTitle);
+    var tickerPrice = document.createElement("p");
+    tickerPrice.innerText = (Math.round(data.price * 100) / 100);
+    tickerDiv.appendChild(tickerPrice);
+    var tickerChange = document.createElement("p");
+    tickerChange.innerText = data.delta_1h + "%";
+    tickerDiv.appendChild(tickerChange);
+
+    tickerEl.appendChild(tickerDiv);
+}
+
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;

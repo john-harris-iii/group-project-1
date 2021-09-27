@@ -12,10 +12,10 @@
 <body>
 
     <header><!-- Style/class relating to bootstrap container -->
-        <div class="grid-container"><!-- Style/class relating to bootstrap row -->
+        <div class="grid-container title-menu-container"><!-- Style/class relating to bootstrap row -->
             <div class="grid-x grid-margin-x align-center-middle"><!-- Style/class relating to bootstrap column 12 -->
                 <div class="cell large-10">
-                    <h1><a href="./index.html">CryptoWatcher</a></h1>
+                    <h1 class="page-title-name"><a href="./index.html">CryptoWatcher</a></h1>
                 </div>
 
                 <div class="cell large-2 ">
@@ -74,11 +74,9 @@
             </div>
             <div class="cell large-2">
                 <h5>CryptoTickers:</h5>
-                <!-- create a new ticker for each crypto searched, will show green if increasing or red if decreasing? as well as % change -->
-                <!-- we can dynamically create by selection/search the options below -->
-                <p id="ticker-name"></p><!-- from snapshot-ticker in polygon -->
-                <p id="todays_change"></p><!-- from snapshot-ticker in polygon -->
-                <p id="today_change_percent"></p><!-- from snapshot-ticker in polygon -->
+                <div id="tickers">
+                    <!-- dynamically created tickers go here -->
+                </div>
             </div>
         </div>
     </main>
