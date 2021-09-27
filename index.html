@@ -39,12 +39,12 @@
         <div class="grid-x grid-margin-x"><!-- Style/class relating to bootstrap row -->
             <div class="cell large-2 crypto"><!-- Style/class relating to bootstrap column 3 -->
                 <!-- only shows if in home or historical trades option -->
-                <label for="crypto" class="home historical-trades hide">Select your crypto:</label>
-                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades hide">
+                <label for="crypto" class="home historical-trades">Select your crypto:</label>
+                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades">
                 <!-- input that shows up if historical trading is selected-->
                 <!-- input that shows up when in home or historical option -->
-                <label for="money-type" class="home historical-trades hide">Select your type of currency:</label>
-                <input type="text" name="money-type" id="money-type" class="home historical-trades hide" placeholder="example: USD, EUR, JPY" />
+                <label for="money-type" class="home historical-trades">Select your type of currency:</label>
+                <input type="text" name="money-type" id="money-type" class="home historical-trades" placeholder="example: USD, EUR, JPY" />
                 <label for="date" class="hide historical-trades">Select the historical date:</label>
                 <input type="date" name="crypto-date" id="crypto-date" class="hide historical-trades" />
                 <!-- TEST BUTTON -->
@@ -53,14 +53,14 @@
           
             <div class="cell large-8">
                 <div class="card card-style">
-                    <div class="card-divider align-justify divider-info">
-                        <span class='crypto'>
+                    <div class="card-divider align-justify divider-info row">
+                        <div class='crypto columns small-3 large-6'>
                         <h4 id="currency-name" class="home historical-trades hide">Bitcoin (BTC)</h4>
                         <!-- <h4 id="rank" class="hide ranked-list">Ranked List</h4> -->
-                        </span>
-                        <span class="crypto">
-                        <h4 id="currency-rank" class="hide home">Rank: 1</h4>
-                    </span>
+                        </div>
+                        <div class="crypto columns small-3 large-6">
+                        <h4 id="currency-rank" class="home">Rank: 1</h4>
+                        </div>
                     </div>
                     <div class="card-section section-info">
                         <p id="current-value">Current Value: $3500</p><!--(coinlib coin endpoint) data.price -->

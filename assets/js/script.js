@@ -80,7 +80,47 @@ function historicData(data, date){
     //append historic info to html
     historicTradesEl.appendChild(historicData);
 }
+// vontains content that will be made for the base of the page.
+function homeBase() {
+    // part for the divider info class
+    // hold coin name
+    var currentCoin = document.createElement('h4');
+    $(currentCoin).attr('id', 'currency-name');
+    cardDividerInfo.appendChild(currentCoin);
+    // hold coin rank
+    var currentRank = document.createElement('h4');
+    $(currentRank).attr('id', 'currency-rank');
+    cardDividerInfo.appendChild(currentRank);
 
+
+    // part for the section info class
+
+    // hold current value text 
+    var currentValueText = document.createElement('p')
+    $(currentValueText).attr('id', 'current-value');
+    cardSectionInfo.appendChild(currentValueText);
+    // hold high-24hr text
+    var high24hText = document.createElement('p')
+    $(high24hText).attr('id', 'high-24hr');
+    cardSectionInfo.appendChild(high24hText)
+    // hold last hour change text
+    var hourChangeText = document.createElement('p')
+    $(hourChangeText).attr('id', 'change-1h');
+    cardSectionInfo.appendChild(hourChangeText);
+    // hold last 24 hr change
+    var twentyFourHourChangeText = document.createElement('p')
+    $(twentyFourHourChangeText).attr('id', 'change-24h');
+    cardSectionInfo.appendChild(twentyFourHourChangeText);
+    // hold last 7 day change
+    var sevenDayChangeText = document.createElement('p')
+    $(sevenDayChangeText).attr('id', 'change-7d');
+    cardSectionInfo.appendChild(sevenDayChangeText);
+    // hold last 30 day change
+    var thirtyDayChangeText = document.createElement('p')
+    $(thirtyDayChangeText).attr('id', 'change-30d');
+    cardSectionInfo.appendChild(thirtyDayChangeText);
+    
+}
 
 function coinLibGlobal() {
 var apiKey = `adae3d665d605d5a`;
@@ -132,17 +172,21 @@ $('#test-btn').click(function coinLibCoin() {
     .then(function(data) {
         console.log(data)
         $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
-        $('#currency-rank').html('Rank: ' + data.rank)
+        $('#currency-rank').html(' Rank: ' + data.rank)
         $('#current-value').html('Current Value: $' + parseFloat(data.price).toFixed(2));
         $('#high-24hr').html('Highest Value in past 24hr: $' + parseFloat(data.high_24h).toFixed(2));
+       // if (isNaN) {}
         if (data.delta_1h > 0) {
-            $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%')
+            $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%');
         }
         if (data.delta_1h < 0) {
-            $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
+            $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%');
             }
         if (data.delta_24h > 0) {
             $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
+        }
+        if (data.delta_24h < 0) {
+            $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
         }
         if (data.delta_7d > 0) {
             $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
@@ -344,14 +388,14 @@ function rankedListAccordion() {
 $("#menu-dd").on("change", function () {
     if ($(this).val() === "home") {
         // Clear content so new content can be placed
-        // cardDividerInfo.innerHTML = "";
-        // cardSectionInfo.innerHTML = "";
-        // function for home menu
+        cardDividerInfo.innerHTML = "";
+        cardSectionInfo.innerHTML = "";
+        homeBase()
     }
     else if ($(this).val() === "ranked-list") {
         // Clear content so new content can be placed
-        cardDividerInfo.innerHTML = "";
-        cardSectionInfo.innerHTML = "";
+        cardSectionInfo.innerHTML = '';
+        cardDividerInfo.innerHTML = '';
         rankedListAccordion();
     }
     else if ($(this).val() === "historical-trades") {
