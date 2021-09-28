@@ -217,16 +217,17 @@ function tickerData(data){
     var symbol = data.symbol;
     var price = data.price;
     var change = data.delta_1h;
+    
     var dataObj = {symbol, price, change};
 
-    tickerArr.push(dataObj);
     cryptoTicker(dataObj);
 };
 
 //function to create crypto ticker and append to page
 function cryptoTicker(dataObj){
-    console.log(dataObj);
+    
     if(tickerEl.children.length < 3){
+        tickerArr.push(dataObj);
         var tickerDiv = document.createElement("div");
         tickerDiv.setAttribute("class", "card-style");
         tickerDiv.style.padding = "2px";
@@ -240,7 +241,7 @@ function cryptoTicker(dataObj){
         var tickerChange = document.createElement("p");
         tickerChange.innerText = dataObj.change + "%";
         tickerDiv.appendChild(tickerChange);
-
+        console.log(tickerArr.indexOf(dataObj))
         tickerEl.appendChild(tickerDiv);
     }
     tickerSave();
