@@ -10,7 +10,9 @@ body {
 
 .title-menu-container {
     border-bottom: 3px solid rgb(44, 44, 44);
-    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
 
 .page-title-name a {
