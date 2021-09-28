@@ -59,13 +59,12 @@ function polygonOpenClose(crypto, currency, date){
 
 //function to put polygon historic info on page
 function historicData(data, date){
-    historicTradesEl.innerText = "";
     //create div to hold historic info
     var historicData = document.createElement("div");
     //variable to hold selected date
-    var selectedDate = document.createElement("p");;
+    var selectedDate = document.createElement("h4");;
     selectedDate.innerText = data.symbol + " " + date;
-    historicData.appendChild(selectedDate);
+    cardDividerInfo.appendChild(selectedDate);
     //variable to hold days opening price
     var openingPrice = document.createElement("p");
     openingPrice.innerText = "Opening Price: " + (Math.round(data.open * 100) / 100);
@@ -79,10 +78,11 @@ function historicData(data, date){
     priceChange.innerText = "Price Change: " + (Math.round((data.close - data.open) *100) / 100);
     historicData.appendChild(priceChange);
     //append historic info to html
-    historicTradesEl.appendChild(historicData);
+    cardSectionInfo.appendChild(historicData);
 }
+
 // vontains content that will be made for the base of the page.
-function homeBase() {
+function homeDividerInfo() {
     // part for the divider info class
     // hold coin name
     var currentCoin = document.createElement('h4');
@@ -92,8 +92,8 @@ function homeBase() {
     var currentRank = document.createElement('h4');
     $(currentRank).attr('id', 'currency-rank');
     cardDividerInfo.appendChild(currentRank);
-
-
+}
+function homeSectionInfo() {
     // part for the section info class
 
     // hold current value text 
@@ -190,6 +190,9 @@ function coinInfo(data){
         }
     if (data.delta_24h > 0) {
         $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
+    }
+    if (data.delta_24h < 0) {
+        $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
     }
     if (data.delta_7d > 0) {
         $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
@@ -413,7 +416,8 @@ $("#menu-dd").on("change", function () {
         // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
-        homeBase()
+        homeDividerInfo();
+        homeSectionInfo();
     }
     else if ($(this).val() === "ranked-list") {
         // Clear content so new content can be placed
@@ -423,8 +427,8 @@ $("#menu-dd").on("change", function () {
     }
     else if ($(this).val() === "historical-trades") {
         // Clear content so new content can be placed
-        // cardDividerInfo.innerHTML = "";
-        // cardSectionInfo.innerHTML = "";
-        // function for historical trades menu
+        cardDividerInfo.innerHTML = "";
+        cardSectionInfo.innerHTML = "";
+        historicData();
     }
 }) 
