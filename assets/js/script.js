@@ -5,14 +5,15 @@ var cryptoSelect = $('#user-crypto-name');
 var currencySelect = $('#money-type');
 // john vars
 var testBtn = $("#test-btn");
+var historicTradesEl = document.querySelector("#historical-trades-actual");
+var tickerEl = document.querySelector("#tickers");
+var tickerArr = JSON.parse(localStorage.getItem("ticker")) || [];
 // tniemeye19 vars
 var dropDownMenuEl = document.getElementById("menu-dd");
 var rankedButtonBtn = document.getElementById("ranked-button");
 var cardDividerInfo = document.querySelector(".divider-info");
 var cardSectionInfo = document.querySelector(".section-info");
 
-var historicTradesEl = document.querySelector("#historical-trades-actual");
-var tickerEl = document.querySelector("#tickers");
 
 testBtn.on("click", function(){
     var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
@@ -158,6 +159,7 @@ function coinLibCoinList() {
 // coinLibCoinList();
 
 
+
 $('#test-btn').click(function coinLibCoin() {
     var apiKey = `adae3d665d605d5a`;
     //in the final product currency and crypto will be passed into the function as arguments
@@ -172,7 +174,7 @@ $('#test-btn').click(function coinLibCoin() {
     })
     .then(function(data) {
         coinInfo(data);
-        cryptoTicker(data);
+        tickerData(data);
     })
 })
 
@@ -208,28 +210,75 @@ function coinInfo(data){
     }
 }
 
-//function to create crypto ticker and append to page
-function cryptoTicker(data){
-    console.log(data);
-    
-    var tickerDiv = document.createElement("div");
-    tickerDiv.style.backgroundColor = "#3f3f3f";
-    tickerDiv.style.color = "white";
-    tickerDiv.style.padding = "2px"
-    tickerDiv.style.margin = "2px 0 2px 0"
-    var tickerTitle = document.createElement("h4");
-    tickerTitle.innerText = data.symbol;
-    tickerDiv.appendChild(tickerTitle);
-    var tickerPrice = document.createElement("p");
-    tickerPrice.innerText = (Math.round(data.price * 100) / 100);
-    tickerDiv.appendChild(tickerPrice);
-    var tickerChange = document.createElement("p");
-    tickerChange.innerText = data.delta_1h + "%";
-    tickerDiv.appendChild(tickerChange);
+function tickerData(data){
+    var symbol = data.symbol;
+    var price = data.price;
+    var change = data.delta_1h;
 
-    tickerEl.appendChild(tickerDiv);
+    cryptoTicker(symbol, price, change);
+   
 }
 
+//function to create crypto ticker and append to page
+function cryptoTicker(symbol, price, change){
+
+    if(tickerEl.children.length < 3){
+        tickerArr.push([symbol, price, change])
+        var tickerDiv = document.createElement("div");
+        tickerDiv.style.backgroundColor = "#3f3f3f";
+        tickerDiv.style.color = "white";
+        tickerDiv.style.padding = "2px"
+        tickerDiv.style.margin = "2px 0 2px 0"
+        var tickerTitle = document.createElement("h4");
+        tickerTitle.innerText = symbol;
+        tickerDiv.appendChild(tickerTitle);
+        var tickerPrice = document.createElement("p");
+        tickerPrice.innerText = (Math.round(price * 100) / 100);
+        tickerDiv.appendChild(tickerPrice);
+        var tickerChange = document.createElement("p");
+        tickerChange.innerText = change + "%";
+        tickerDiv.appendChild(tickerChange);
+
+        tickerEl.appendChild(tickerDiv);
+    }
+    tickerSave();
+}
+
+//function to save tickers to localStorage
+function tickerSave(){
+    localStorage.setItem("ticker", JSON.stringify(tickerArr));
+}
+
+//function to load tickers from localStorage
+function tickerLoad(){
+    var tickers = localStorage.getItem("ticker");
+
+    if(!tickers){
+        tickers = [];
+        return false
+    }
+
+    tickers = JSON.parse(tickers);
+
+    tickers.forEach(function(info){
+        var tickerDiv = document.createElement("div");
+        tickerDiv.style.backgroundColor = "#3f3f3f";
+        tickerDiv.style.color = "white";
+        tickerDiv.style.padding = "2px"
+        tickerDiv.style.margin = "2px 0 2px 0"
+        var tickerTitle = document.createElement("h4");
+        tickerTitle.innerText = info[0];
+        tickerDiv.appendChild(tickerTitle);
+        var tickerPrice = document.createElement("p");
+        tickerPrice.innerText = (Math.round(info[1] * 100) / 100);
+        tickerDiv.appendChild(tickerPrice);
+        var tickerChange = document.createElement("p");
+        tickerChange.innerText = info[2] + "%";
+        tickerDiv.appendChild(tickerChange);
+
+        tickerEl.appendChild(tickerDiv);
+    })
+};
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
@@ -429,6 +478,7 @@ $("#menu-dd").on("change", function () {
         // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
-        historicData();
     }
 }) 
+
+tickerLoad();
