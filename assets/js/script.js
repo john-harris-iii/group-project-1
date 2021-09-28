@@ -174,7 +174,7 @@ $('#test-btn').click(function coinLibCoin() {
     })
     .then(function(data) {
         coinInfo(data);
-        cryptoTicker(data);
+        tickerData(data);
     })
 })
 
@@ -207,36 +207,75 @@ function coinInfo(data){
     }
 }
 
+function tickerData(data){
+    var symbol = data.symbol;
+    var price = data.price;
+    var change = data.delta_1h;
+
+    cryptoTicker(symbol, price, change);
+   
+}
+
 //function to create crypto ticker and append to page
-function cryptoTicker(data){
-    
+function cryptoTicker(symbol, price, change){
+
     if(tickerEl.children.length < 3){
-        tickerArr.push([data.symbol, data.price, data.delta_1h])
+        tickerArr.push([symbol, price, change])
         var tickerDiv = document.createElement("div");
         tickerDiv.style.backgroundColor = "#3f3f3f";
         tickerDiv.style.color = "white";
         tickerDiv.style.padding = "2px"
         tickerDiv.style.margin = "2px 0 2px 0"
         var tickerTitle = document.createElement("h4");
-        tickerTitle.innerText = data.symbol;
+        tickerTitle.innerText = symbol;
         tickerDiv.appendChild(tickerTitle);
         var tickerPrice = document.createElement("p");
-        tickerPrice.innerText = (Math.round(data.price * 100) / 100);
+        tickerPrice.innerText = (Math.round(price * 100) / 100);
         tickerDiv.appendChild(tickerPrice);
         var tickerChange = document.createElement("p");
-        tickerChange.innerText = data.delta_1h + "%";
+        tickerChange.innerText = change + "%";
         tickerDiv.appendChild(tickerChange);
 
         tickerEl.appendChild(tickerDiv);
-
-        tickerSave();
     }
+    tickerSave();
 }
 
 //function to save tickers to localStorage
 function tickerSave(){
     localStorage.setItem("ticker", JSON.stringify(tickerArr));
 }
+
+//function to load tickers from localStorage
+function tickerLoad(){
+    var tickers = localStorage.getItem("ticker");
+
+    if(!tickers){
+        tickers = [];
+        return false
+    }
+
+    tickers = JSON.parse(tickers);
+
+    tickers.forEach(function(info){
+        var tickerDiv = document.createElement("div");
+        tickerDiv.style.backgroundColor = "#3f3f3f";
+        tickerDiv.style.color = "white";
+        tickerDiv.style.padding = "2px"
+        tickerDiv.style.margin = "2px 0 2px 0"
+        var tickerTitle = document.createElement("h4");
+        tickerTitle.innerText = info[0];
+        tickerDiv.appendChild(tickerTitle);
+        var tickerPrice = document.createElement("p");
+        tickerPrice.innerText = (Math.round(info[1] * 100) / 100);
+        tickerDiv.appendChild(tickerPrice);
+        var tickerChange = document.createElement("p");
+        tickerChange.innerText = info[2] + "%";
+        tickerDiv.appendChild(tickerChange);
+
+        tickerEl.appendChild(tickerDiv);
+    })
+};
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
@@ -437,3 +476,5 @@ $("#menu-dd").on("change", function () {
         cardSectionInfo.innerHTML = "";
     }
 }) 
+
+tickerLoad();
