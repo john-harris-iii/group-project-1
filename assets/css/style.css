@@ -22,6 +22,10 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
+#menu-dd {
+    margin: 0;
+}
+
 .card-style {
     background-color: rgb(14, 28, 39);
     border: none;
