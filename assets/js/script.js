@@ -16,17 +16,17 @@ var cardSectionInfo = document.querySelector(".section-info");
 
 
 testBtn.on("click", function(){
-    var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
-    var currencySelect = $("#money-type").val().toUpperCase().trim(); 
-    var dateSelect = $("#crypto-date").val().trim();
+     var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
+     var currencySelect = $("#money-type").val().toUpperCase().trim(); 
+     var dateSelect = $("#crypto-date").val().trim();
 
-    if(cryptoSelect !== "" && currencySelect !== "" && dateSelect !== ""){
-        polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
-    }
-    else{
-        console.log("plz enter a date for history data");
-    }
-});
+     if(cryptoSelect !== "" && currencySelect !== "" && dateSelect !== ""){
+         polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
+     }
+     else{
+         console.log("plz enter a date for history data");
+     }
+ });
 
 // function that changes content of page depending on the option selected
 $(document).on('change', '.toggle', function() {
@@ -211,13 +211,13 @@ function coinInfo(data){
 }
 
 function tickerData(data){
-    var symbol = data.symbol;
-    var price = data.price;
-    var change = data.delta_1h;
+var symbol = data.symbol;
+var price = data.price;
+var change = data.delta_1h;
 
-    cryptoTicker(symbol, price, change);
+  cryptoTicker(symbol, price, change);
    
-}
+ }
 
 //function to create crypto ticker and append to page
 function cryptoTicker(symbol, price, change){
@@ -478,6 +478,7 @@ $("#menu-dd").on("change", function () {
         // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
+        historicData();
     }
 }) 
 
