@@ -9,12 +9,14 @@ body {
 }
 
 .title-menu-container {
-    border-bottom: 3px solid rgb(97, 216, 0);
+    border-bottom: 3px solid rgb(44, 44, 44);
+    margin: 10px;
 }
 
 .page-title-name a {
-    color: rgb(97, 216, 0);
+    color: rgb(44, 44, 44);
     text-decoration: none;
+    font-weight: bold;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -45,7 +47,7 @@ body {
 
 .coin-rank:visited {
     color: white;
-    background-color: rgb(97, 216, 0);
+    background-color: rgb(44, 44, 44);
 }
 
 .coin-title {
