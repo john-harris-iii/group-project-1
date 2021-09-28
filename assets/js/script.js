@@ -159,7 +159,6 @@ function coinLibCoinList() {
 // coinLibCoinList();
 
 
-
 $('#test-btn').click(function coinLibCoin() {
     var apiKey = `adae3d665d605d5a`;
     //in the final product currency and crypto will be passed into the function as arguments
@@ -177,6 +176,7 @@ $('#test-btn').click(function coinLibCoin() {
         tickerData(data);
     })
 })
+
 
 //moved David's code to append data to main page into it's own function 
 function coinInfo(data){
