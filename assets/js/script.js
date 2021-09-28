@@ -3,6 +3,7 @@
 //juiceke vars
 var cryptoSelect = $('#user-crypto-name');
 var currencySelect = $('#money-type');
+var cryptoDate = $('#crypto-date')
 // john vars
 var testBtn = $("#test-btn");
 var historicTradesEl = document.querySelector("#historical-trades-actual");
@@ -163,7 +164,7 @@ function coinLibCoinList() {
 
 
 $('#test-btn').click(function coinLibCoin() {
-    var apiKey = `adae3d665d605d5a`;
+    var apiKey = 'adae3d665d605d5a';
     //in the final product currency and crypto will be passed into the function as arguments
     var currency = currencySelect.val();
     var crypto = cryptoSelect.val();
@@ -467,6 +468,7 @@ $("#menu-dd").on("change", function () {
         // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
+        cryptoDate.val('');
         homeDividerInfo();
         homeSectionInfo();
     }
