@@ -228,10 +228,9 @@ function cryptoTicker(dataObj){
     console.log(dataObj);
     if(tickerEl.children.length < 3){
         var tickerDiv = document.createElement("div");
-        tickerDiv.style.backgroundColor = "#3f3f3f";
-        tickerDiv.style.color = "white";
-        tickerDiv.style.padding = "2px"
-        tickerDiv.style.margin = "2px 0 2px 0"
+        tickerDiv.setAttribute("class", "card-style");
+        tickerDiv.style.padding = "2px";
+        tickerDiv.style.margin = "2px 0 2px 0";
         var tickerTitle = document.createElement("h4");
         tickerTitle.innerText = dataObj.symbol;
         tickerDiv.appendChild(tickerTitle);
@@ -265,8 +264,7 @@ function tickerLoad(){
 
     tickers.forEach(function(info){
         var tickerDiv = document.createElement("div");
-        tickerDiv.style.backgroundColor = "#3f3f3f";
-        tickerDiv.style.color = "white";
+        tickerDiv.setAttribute("class", "card-style");
         tickerDiv.style.padding = "2px"
         tickerDiv.style.margin = "2px 0 2px 0"
         var tickerTitle = document.createElement("h4");
