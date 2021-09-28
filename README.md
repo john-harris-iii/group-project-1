@@ -5,7 +5,7 @@ Crypto Watcher is a cryptocurrency data tracking tool. Users can use cryptotrack
 - current value
 - highest value in the past 24 hours
 - percent change in the last hour, day, week, and month
-![Image of Main](./assets/image/main-screenshot.png)
+![Image of Main](./assets/images/main-screenshot.png)
 
 
 historical data for a specific date within the past 2 years including:
@@ -14,6 +14,3 @@ historical data for a specific date within the past 2 years including:
 - price change
 
 Each time a cryptocurrency is searched a ticker is created (up to 3 tickers). Tickers display the cryptocurrency's current value and % change.
-
-
-42180.69
