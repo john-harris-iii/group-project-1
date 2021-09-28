@@ -15,6 +15,7 @@ body {
 .page-title-name a {
     color:black;
     text-decoration: none;
+    font-weight: bold;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -45,7 +46,7 @@ body {
 
 .coin-rank:visited {
     color: white;
-    background-color: rgb(97, 216, 0);
+    background-color: rgb(44, 44, 44);
 }
 
 .coin-title {
