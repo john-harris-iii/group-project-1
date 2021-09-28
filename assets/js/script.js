@@ -244,7 +244,7 @@ function rankedListAccordion() {
         // Ranked List div (to be put in as title for card)
         var rankedListTitleEl = document.createElement("h4");
         rankedListTitleEl.setAttribute("id", "ranked-list-title");
-        rankedListTitleEl.innerHTML = "Ranked List"
+        rankedListTitleEl.innerHTML = "Ranked List";
         $(".divider-info").append(rankedListTitleEl);
 
         // Ranked List div (to be put in as info for card)

@@ -4,6 +4,8 @@
 
 body {
     background-color: rgb(14, 28, 39);
+    font-family: 'Karla', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 .title-menu-container {
@@ -13,6 +15,7 @@ body {
 .page-title-name a {
     color: rgb(97, 216, 0);
     text-decoration: none;
+    font-family: 'Rubik', sans-serif;
 }
 
 .card-style {
@@ -28,6 +31,7 @@ body {
 #ranked-list-title {
     font-weight: bold;
     color: white;
+    font-family: 'Rubik', sans-serif;
 }
 
 .accordion-item {
