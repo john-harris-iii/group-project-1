@@ -226,27 +226,30 @@ function tickerData(data){
 
 //function to create crypto ticker and append to page
 function cryptoTicker(dataObj){
-    
-    if(tickerEl.children.length < 3){
+    const results = tickerArr.some(obj => obj["symbol"] === dataObj.symbol);
+    console.log(results);
+    if(!results){
         tickerArr.push(dataObj);
-        var tickerDiv = document.createElement("div");
-        tickerDiv.setAttribute("class", "card-style");
-        tickerDiv.style.padding = "2px";
-        tickerDiv.style.margin = "2px 0 2px 0";
-        var tickerTitle = document.createElement("h4");
-        tickerTitle.innerText = dataObj.symbol;
-        tickerDiv.appendChild(tickerTitle);
-        var tickerPrice = document.createElement("p");
-        tickerPrice.innerText = (Math.round(dataObj.price * 100) / 100);
-        tickerDiv.appendChild(tickerPrice);
-        var tickerChange = document.createElement("p");
-        tickerChange.innerText = dataObj.change + "%";
-        tickerDiv.appendChild(tickerChange);
-        console.log(tickerArr.indexOf(dataObj))
-        tickerEl.appendChild(tickerDiv);
-    }
+        if(tickerArr.length > 3){
+            tickerArr.shift();
+        }
+        // tickerDiv.setAttribute("class", "card-style");
+        // tickerDiv.style.padding = "2px";
+        // tickerDiv.style.margin = "2px 0 2px 0";
+        // var tickerTitle = document.createElement("h4");
+        // tickerTitle.innerText = dataObj.symbol;
+        // tickerDiv.appendChild(tickerTitle);
+        // var tickerPrice = document.createElement("p");
+        // tickerPrice.innerText = (Math.round(dataObj.price * 100) / 100);
+        // tickerDiv.appendChild(tickerPrice);
+        // var tickerChange = document.createElement("p");
+        // tickerChange.innerText = dataObj.change + "%";
+        // tickerDiv.appendChild(tickerChange);
+        // tickerEl.appendChild(tickerDiv);
+    };
     tickerSave();
-}
+    tickerLoad();
+};
 
 //function to save tickers to localStorage
 function tickerSave(){
@@ -263,7 +266,7 @@ function tickerLoad(){
     }
 
     tickers = JSON.parse(tickers);
-
+    tickerEl.innerText = "";
     tickers.forEach(function(info){
         var tickerDiv = document.createElement("div");
         tickerDiv.setAttribute("class", "card-style");
