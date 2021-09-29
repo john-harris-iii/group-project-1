@@ -226,27 +226,30 @@ function tickerData(data){
 
 //function to create crypto ticker and append to page
 function cryptoTicker(dataObj){
-    
-    if(tickerEl.children.length < 3){
+    const results = tickerArr.some(obj => obj["symbol"] === dataObj.symbol);
+    console.log(results);
+    if(!results){
         tickerArr.push(dataObj);
-        var tickerDiv = document.createElement("div");
-        tickerDiv.setAttribute("class", "card-style");
-        tickerDiv.style.padding = "2px";
-        tickerDiv.style.margin = "2px 0 2px 0";
-        var tickerTitle = document.createElement("h4");
-        tickerTitle.innerText = dataObj.symbol;
-        tickerDiv.appendChild(tickerTitle);
-        var tickerPrice = document.createElement("p");
-        tickerPrice.innerText = (Math.round(dataObj.price * 100) / 100);
-        tickerDiv.appendChild(tickerPrice);
-        var tickerChange = document.createElement("p");
-        tickerChange.innerText = dataObj.change + "%";
-        tickerDiv.appendChild(tickerChange);
-        console.log(tickerArr.indexOf(dataObj))
-        tickerEl.appendChild(tickerDiv);
-    }
+        if(tickerArr.length > 3){
+            tickerArr.shift();
+        }
+        // tickerDiv.setAttribute("class", "card-style");
+        // tickerDiv.style.padding = "2px";
+        // tickerDiv.style.margin = "2px 0 2px 0";
+        // var tickerTitle = document.createElement("h4");
+        // tickerTitle.innerText = dataObj.symbol;
+        // tickerDiv.appendChild(tickerTitle);
+        // var tickerPrice = document.createElement("p");
+        // tickerPrice.innerText = (Math.round(dataObj.price * 100) / 100);
+        // tickerDiv.appendChild(tickerPrice);
+        // var tickerChange = document.createElement("p");
+        // tickerChange.innerText = dataObj.change + "%";
+        // tickerDiv.appendChild(tickerChange);
+        // tickerEl.appendChild(tickerDiv);
+    };
     tickerSave();
-}
+    tickerLoad();
+};
 
 //function to save tickers to localStorage
 function tickerSave(){
@@ -263,7 +266,7 @@ function tickerLoad(){
     }
 
     tickers = JSON.parse(tickers);
-
+    tickerEl.innerText = "";
     tickers.forEach(function(info){
         var tickerDiv = document.createElement("div");
         tickerDiv.setAttribute("class", "card-style");
@@ -284,17 +287,17 @@ function tickerLoad(){
 };
 
 function rankedListAccordion() {
-    var apiKey = `adae3d665d605d5a`;
+    var apiKey = `adae3d665d605d5a`;
 
-    var rankedListURL = `https://coinlib.io/api/v1/coinlist?key=${apiKey}&page=1&order=rank_asc`
+    var rankedListURL = `https://coinlib.io/api/v1/coinlist?key=${apiKey}&page=1&order=rank_asc`
 
-    fetch(rankedListURL)
-    .then(function(response) {
-        return response.json()
-    })
-    .then(function(data) {
-        console.log(data)
-        console.log(data.coins.length)
+    fetch(rankedListURL)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(data) {
+        console.log(data)
+        console.log(data.coins.length)
 
         // Ranked List div (to be put in as title for card)
         var rankedListTitleEl = document.createElement("h4");
@@ -314,23 +317,23 @@ function rankedListAccordion() {
         accordion_ul.setAttribute("data-allow-all-closed", "true");
         rankedListActualEl.appendChild(accordion_ul);
 
-        for (var i = 0; i <= (data.coins.length - 1); i++) {
+        for (var i = 0; i <= (data.coins.length - 1); i++) {
             // Initialize variables in order to get appropriate data from fetch
-            var singleCoinRank = data.coins[i].rank;
-            var singleCoinName = data.coins[i].name;
+            var singleCoinRank = data.coins[i].rank;
+            var singleCoinName = data.coins[i].name;
             var singleCoinSymbol = data.coins[i].symbol; 
-            var singleCoinPrice = data.coins[i].price;
-            var singleCoin24hrChange = data.coins[i].delta_24h;
+            var singleCoinPrice = data.coins[i].price;
+            var singleCoin24hrChange = data.coins[i].delta_24h;
             var singleCoinVolume = data.coins[i].volume_24h; 
             var singleCoinMarketCap = data.coins[i].market_cap;  
 
             // Initialize variables. These create the format for the accordion list for foundation css.
-            var accordion_li = document.createElement("li");
-            var accordion_a = document.createElement("a");
+            var accordion_li = document.createElement("li");
+            var accordion_a = document.createElement("a");
             var accordion_a_span = document.createElement("span");
             var accordion_div_main = document.createElement("div");
-            var accordion_div_text = document.createElement("div");
-            var accordion_div_vars = document.createElement("div");
+            var accordion_div_text = document.createElement("div");
+            var accordion_div_vars = document.createElement("div");
             var coinSymbolP = document.createElement("p"); 
             var coinSymbolP_Span = document.createElement("span");
             var coinPriceP = document.createElement("p");
@@ -342,44 +345,44 @@ function rankedListAccordion() {
             var coinMarketCapP = document.createElement("p"); //Total value of all coins mined - not done
             var coinMarketCapP_Span = document.createElement("span");
 
-            // ACCORDION ITEM (li element)
+            // ACCORDION ITEM (li element)
             accordion_li.classList.add("accordion-item");
             accordion_li.classList.add("index_li" + i);
-            accordion_li.setAttribute("data-accordion-item", "");
+            accordion_li.setAttribute("data-accordion-item", "");
             $(".accordion").append(accordion_li);
             
-            // ACCORDION TITLE (a element) Coin Rank
-            accordion_a.setAttribute("href", "#");
+            // ACCORDION TITLE (a element) Coin Rank
+            accordion_a.setAttribute("href", "#");
             accordion_a.classList.add("accordion-title");
             accordion_a.classList.add("coin-rank");
             accordion_a.classList.add("index_a" + i);
-            accordion_a.innerHTML = singleCoinRank + ". ";
+            accordion_a.innerHTML = singleCoinRank + ". ";
             $(".index_li" + i).append(accordion_a);
             
             // ---- SPAN FOR Coin Rank (inputs Coin Name)
-            accordion_a_span.setAttribute("class", "coin-title");
-            accordion_a_span.innerHTML = singleCoinName;
+            accordion_a_span.setAttribute("class", "coin-title");
+            accordion_a_span.innerHTML = singleCoinName;
             $(".index_a" + i).append(accordion_a_span);
             
-            // ACCORDION CONTENT (div element) main
+            // ACCORDION CONTENT (div element) main
             accordion_div_main.classList.add("accordion-content");
             accordion_div_main.classList.add("acc_div_main");
             accordion_div_main.classList.add("index_div_main" + i);
-            accordion_div_main.setAttribute("data-tab-content", "");
+            accordion_div_main.setAttribute("data-tab-content", "");
             $(".index_li" + i).append(accordion_div_main);
             
-            // ACCORDION CONTENT (div element) text
+            // ACCORDION CONTENT (div element) text
             accordion_div_text.classList.add("accordion-content");
             accordion_div_text.classList.add("acc_div_text");
             accordion_div_text.classList.add("index_div_text" + i);
-            accordion_div_text.setAttribute("data-tab-content", "");
+            accordion_div_text.setAttribute("data-tab-content", "");
             $(".index_div_main" + i).append(accordion_div_text);
             
-            // ACCORDION CONTENT (div element) vars
+            // ACCORDION CONTENT (div element) vars
             accordion_div_vars.classList.add("accordion-content");
             accordion_div_vars.classList.add("acc_div_vars");
             accordion_div_vars.classList.add("index_div_vars" + i);
-            accordion_div_vars.setAttribute("data-tab-content", "");
+            accordion_div_vars.setAttribute("data-tab-content", "");
             $(".index_div_main" + i).append(accordion_div_vars);
             
             var accordion_div_clear = document.createElement("div");
@@ -460,7 +463,7 @@ function rankedListAccordion() {
         $(document).foundation();
 
         // Credit for commas in numbers: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-    })
+    })
 }
 
 $("#menu-dd").on("change", function () {
