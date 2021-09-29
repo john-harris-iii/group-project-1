@@ -3,6 +3,7 @@
 //juiceke vars
 var cryptoSelect = $('#user-crypto-name');
 var currencySelect = $('#money-type');
+var cryptoDate = $('#crypto-date')
 // john vars
 var testBtn = $("#test-btn");
 var historicTradesEl = document.querySelector("#historical-trades-actual");
@@ -16,17 +17,17 @@ var cardSectionInfo = document.querySelector(".section-info");
 
 
 testBtn.on("click", function(){
-    var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
-    var currencySelect = $("#money-type").val().toUpperCase().trim(); 
-    var dateSelect = $("#crypto-date").val().trim();
+     var cryptoSelect = $("#user-crypto-name").val().toUpperCase().trim();
+     var currencySelect = $("#money-type").val().toUpperCase().trim(); 
+     var dateSelect = $("#crypto-date").val().trim();
 
-    if(cryptoSelect !== "" && currencySelect !== "" && dateSelect !== ""){
-        polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
-    }
-    else{
-        console.log("plz enter a date for history data");
-    }
-});
+     if(cryptoSelect !== "" && currencySelect !== "" && dateSelect !== ""){
+         polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
+     }
+     else{
+         console.log("plz enter a date for history data");
+     }
+ });
 
 // function that changes content of page depending on the option selected
 $(document).on('change', '.toggle', function() {
@@ -60,10 +61,12 @@ function polygonOpenClose(crypto, currency, date){
 
 //function to put polygon historic info on page
 function historicData(data, date){
+    cardSectionInfo.innerText = '';
+    cardDividerInfo.innerText = '';
     //create div to hold historic info
     var historicData = document.createElement("div");
     //variable to hold selected date
-    var selectedDate = document.createElement("h4");;
+    var selectedDate = document.createElement("h4");
     selectedDate.innerText = data.symbol + " " + date;
     cardDividerInfo.appendChild(selectedDate);
     //variable to hold days opening price
@@ -161,7 +164,7 @@ function coinLibCoinList() {
 
 
 $('#test-btn').click(function coinLibCoin() {
-    var apiKey = `adae3d665d605d5a`;
+    var apiKey = 'adae3d665d605d5a';
     //in the final product currency and crypto will be passed into the function as arguments
     var currency = currencySelect.val();
     var crypto = cryptoSelect.val();
@@ -211,34 +214,35 @@ function coinInfo(data){
 }
 
 function tickerData(data){
+    
     var symbol = data.symbol;
     var price = data.price;
     var change = data.delta_1h;
+    
+    var dataObj = {symbol, price, change};
 
-    cryptoTicker(symbol, price, change);
-   
-}
+    cryptoTicker(dataObj);
+};
 
 //function to create crypto ticker and append to page
-function cryptoTicker(symbol, price, change){
-
+function cryptoTicker(dataObj){
+    
     if(tickerEl.children.length < 3){
-        tickerArr.push([symbol, price, change])
+        tickerArr.push(dataObj);
         var tickerDiv = document.createElement("div");
-        tickerDiv.style.backgroundColor = "#3f3f3f";
-        tickerDiv.style.color = "white";
-        tickerDiv.style.padding = "2px"
-        tickerDiv.style.margin = "2px 0 2px 0"
+        tickerDiv.setAttribute("class", "card-style");
+        tickerDiv.style.padding = "2px";
+        tickerDiv.style.margin = "2px 0 2px 0";
         var tickerTitle = document.createElement("h4");
-        tickerTitle.innerText = symbol;
+        tickerTitle.innerText = dataObj.symbol;
         tickerDiv.appendChild(tickerTitle);
         var tickerPrice = document.createElement("p");
-        tickerPrice.innerText = (Math.round(price * 100) / 100);
+        tickerPrice.innerText = (Math.round(dataObj.price * 100) / 100);
         tickerDiv.appendChild(tickerPrice);
         var tickerChange = document.createElement("p");
-        tickerChange.innerText = change + "%";
+        tickerChange.innerText = dataObj.change + "%";
         tickerDiv.appendChild(tickerChange);
-
+        console.log(tickerArr.indexOf(dataObj))
         tickerEl.appendChild(tickerDiv);
     }
     tickerSave();
@@ -262,18 +266,17 @@ function tickerLoad(){
 
     tickers.forEach(function(info){
         var tickerDiv = document.createElement("div");
-        tickerDiv.style.backgroundColor = "#3f3f3f";
-        tickerDiv.style.color = "white";
+        tickerDiv.setAttribute("class", "card-style");
         tickerDiv.style.padding = "2px"
         tickerDiv.style.margin = "2px 0 2px 0"
         var tickerTitle = document.createElement("h4");
-        tickerTitle.innerText = info[0];
+        tickerTitle.innerText = info.symbol;
         tickerDiv.appendChild(tickerTitle);
         var tickerPrice = document.createElement("p");
-        tickerPrice.innerText = (Math.round(info[1] * 100) / 100);
+        tickerPrice.innerText = (Math.round(info.price * 100) / 100);
         tickerDiv.appendChild(tickerPrice);
         var tickerChange = document.createElement("p");
-        tickerChange.innerText = info[2] + "%";
+        tickerChange.innerText = info.change + "%";
         tickerDiv.appendChild(tickerChange);
 
         tickerEl.appendChild(tickerDiv);
@@ -465,6 +468,7 @@ $("#menu-dd").on("change", function () {
         // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
+        cryptoDate.val('');
         homeDividerInfo();
         homeSectionInfo();
     }
@@ -478,6 +482,8 @@ $("#menu-dd").on("change", function () {
         // Clear content so new content can be placed
         cardDividerInfo.innerHTML = "";
         cardSectionInfo.innerHTML = "";
+        //don't need to call historicData function bc it runs when the button is pressed
+        // historicData();
     }
 }) 
 
