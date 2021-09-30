@@ -9,7 +9,7 @@ var testBtn = $("#test-btn");
 var historicTradesEl = document.querySelector("#historical-trades-actual");
 var tickerEl = document.querySelector("#tickers");
 var tickerArr = JSON.parse(localStorage.getItem("ticker")) || [];
-var intervalId = null;
+let intervalId 
 // tniemeye19 vars
 var dropDownMenuEl = document.getElementById("menu-dd");
 var rankedButtonBtn = document.getElementById("ranked-button");
@@ -269,6 +269,7 @@ function tickerSave(){
 
 //function to load tickers from localStorage
 function tickerLoad(){
+    clearInterval(intervalId);
     var tickers = localStorage.getItem("ticker");
 
     if(!tickers){
@@ -313,9 +314,9 @@ function tickerRefresh(){
     tickers.forEach(function(info){
         coinLibCoinRefresh(apiKey, info.currency, info.crypto);
     })
-    if(intervalId !== null){
-        clearInterval(intervalId);
-    }
+//     if(intervalId !== null){
+//         clearInterval(intervalId);
+//     }
 }
 
 
