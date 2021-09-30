@@ -15,11 +15,11 @@
     <header><!-- Style/class relating to bootstrap container -->
         <div class="grid-container title-menu-container"><!-- Style/class relating to bootstrap row -->
             <div class="grid-x grid-margin-x align-center-middle"><!-- Style/class relating to bootstrap column 12 -->
-                <div class="cell large-10">
+                <div class="cell large-10 medium-9 small-8">
                     <h1 class="page-title-name"><a href="./index.html">CryptoWatcher</a></h1>
                 </div>
 
-                <div class="cell large-2 ">
+                <div class="cell large-2 medium-3 small-4">
                 
                     <select name="menu-dd" id="menu-dd" class="toggle" data-target=".crypto">
                         <option id="home" value="home" data-show=".home">Home</option>
@@ -38,7 +38,7 @@
 
     <main class="grid-container"><!-- Style/class relating to bootstrap container -->
         <div class="grid-x grid-margin-x"><!-- Style/class relating to bootstrap row -->
-            <div class="cell large-2 crypto"><!-- Style/class relating to bootstrap column 3 -->
+            <div class="cell large-2 medium-3 medium-offset- crypto"><!-- Style/class relating to bootstrap column 3 -->
                 <!-- only shows if in home or historical trades option -->
                 <label for="crypto" class="home historical-trades">Select your crypto:</label>
                 <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades">
@@ -52,7 +52,7 @@
                 <input type="button" id="test-btn" class="test-btn home historical-trades" value="SEARCH">
             </div>
           
-            <div class="cell large-8">
+            <div class="cell large-8 medium-6">
                 <div class="card card-style">
                     <div class="card-divider align-justify divider-info row">
                         <div class='crypto columns small-3 large-6'>
@@ -64,16 +64,16 @@
                         </div>
                     </div>
                     <div class="card-section section-info">
-                        <p id="current-value">Current Value: $3500</p><!--(coinlib coin endpoint) data.price -->
-                        <p id="high-24hr">Highest Value in past 24hr: $3600</p><!-- (coinlib coin endpoint) data.high_24h -->
-                        <p id="change-1h">Last Hour Change: +1.03%</p><!-- (coinlib coin endpoint) data.delta_1h -->
-                        <p id="change-24h">Last 24hr Change: -1.99%</p><!-- (coinlib coin endpoint) data.delta_24h -->
-                        <p id="change-7d">Last 7 Day Change: +2.63%</p><!-- (coinlib coin endpoint) data.delta_7d -->
-                        <p id="change-30d">Last 24 Day Change: +6.23%</p><!-- (coinlib coin endpoint) data.delta_30d -->
+                        <p id="current-value"></p><!--(coinlib coin endpoint) data.price -->
+                        <p id="high-24hr"></p><!-- (coinlib coin endpoint) data.high_24h -->
+                        <p id="change-1h"></p><!-- (coinlib coin endpoint) data.delta_1h -->
+                        <p id="change-24h"></p><!-- (coinlib coin endpoint) data.delta_24h -->
+                        <p id="change-7d"></p><!-- (coinlib coin endpoint) data.delta_7d -->
+                        <p id="change-30d"></p><!-- (coinlib coin endpoint) data.delta_30d -->
                     </div>
                 </div>
             </div>
-            <div class="cell large-2">
+            <div class="cell large-2 medium-3">
                 <h5>CryptoTickers:</h5>
                 <div id="tickers">
                     <!-- dynamically created tickers go here -->
