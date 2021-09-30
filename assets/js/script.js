@@ -24,9 +24,6 @@ testBtn.on("click", function(){
      if(cryptoSelect !== "" && currencySelect !== "" && dateSelect !== ""){
          polygonOpenClose(cryptoSelect, currencySelect, dateSelect);
      }
-     else{
-         console.log("plz enter a date for history data");
-     }
  });
 
 // function that changes content of page depending on the option selected
@@ -163,23 +160,30 @@ function coinLibCoinList() {
 
 
 
-$('#test-btn').click(function coinLibCoin() {
+$('#test-btn').click(function() {
+    
     var apiKey = 'adae3d665d605d5a';
-    //in the final product currency and crypto will be passed into the function as arguments
     var currency = currencySelect.val();
     var crypto = cryptoSelect.val();
 
-    var coinlibCoinURL = `https://coinlib.io/api/v1/coin?key=${apiKey}&pref=${currency}&symbol=${crypto}`;
-
-    fetch(coinlibCoinURL)
-    .then(function(response) {
-        return response.json()
-    })
-    .then(function(data) {
-        coinInfo(data);
-        tickerData(data);
-    })
+    coinLibCoin(apiKey, currency, crypto);
 })
+
+//seperated coinLibCoin from button for ticker refresh purposes
+function coinLibCoin(apiKey, currency, crypto){
+    var coinlibCoinURL = `https://coinlib.io/api/v1/coin?key=${apiKey}&pref=${currency}&symbol=${crypto}`;
+    fetch(coinlibCoinURL).then(function(response){
+        if(response.ok){
+            response.json().then(function(data){
+                coinInfo(data);
+                tickerData(data, currency, crypto);
+            })
+        }
+        else{
+            console.log("api bad, you must be bad at coding :(")
+        }
+    })
+}
 
 //moved David's code to append data to main page into it's own function 
 function coinInfo(data){
@@ -213,39 +217,25 @@ function coinInfo(data){
     }
 }
 
-function tickerData(data){
+function tickerData(data, currency, crypto){
     
     var symbol = data.symbol;
     var price = data.price;
     var change = data.delta_1h;
     
-    var dataObj = {symbol, price, change};
+    var dataObj = {symbol, price, change, currency, crypto};
 
     cryptoTicker(dataObj);
 };
 
 //function to create crypto ticker and append to page
 function cryptoTicker(dataObj){
-    const results = tickerArr.some(obj => obj["symbol"] === dataObj.symbol);
-    console.log(results);
+    const results = tickerArr.some(obj => obj["change"] === dataObj.change);
     if(!results){
         tickerArr.push(dataObj);
         if(tickerArr.length > 3){
             tickerArr.shift();
         }
-        // tickerDiv.setAttribute("class", "card-style");
-        // tickerDiv.style.padding = "2px";
-        // tickerDiv.style.margin = "2px 0 2px 0";
-        // var tickerTitle = document.createElement("h4");
-        // tickerTitle.innerText = dataObj.symbol;
-        // tickerDiv.appendChild(tickerTitle);
-        // var tickerPrice = document.createElement("p");
-        // tickerPrice.innerText = (Math.round(dataObj.price * 100) / 100);
-        // tickerDiv.appendChild(tickerPrice);
-        // var tickerChange = document.createElement("p");
-        // tickerChange.innerText = dataObj.change + "%";
-        // tickerDiv.appendChild(tickerChange);
-        // tickerEl.appendChild(tickerDiv);
     };
     tickerSave();
     tickerLoad();
@@ -285,6 +275,23 @@ function tickerLoad(){
         tickerEl.appendChild(tickerDiv);
     })
 };
+
+function tickerRefresh(){
+    var apiKey = "071a874f77975d96"
+    var tickers = localStorage.getItem("ticker");
+
+    if(!tickers){
+        tickers = [];
+        return false
+    }
+
+    tickers = JSON.parse(tickers);
+    tickerEl.innerText = "";
+    tickers.forEach(function(info){
+        coinLibCoin(apiKey, info.currency, info.crypto);
+    })
+}
+
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
