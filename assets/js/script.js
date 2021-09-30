@@ -9,6 +9,7 @@ var testBtn = $("#test-btn");
 var historicTradesEl = document.querySelector("#historical-trades-actual");
 var tickerEl = document.querySelector("#tickers");
 var tickerArr = JSON.parse(localStorage.getItem("ticker")) || [];
+var intervalId = null;
 // tniemeye19 vars
 var dropDownMenuEl = document.getElementById("menu-dd");
 var rankedButtonBtn = document.getElementById("ranked-button");
@@ -185,6 +186,21 @@ function coinLibCoin(apiKey, currency, crypto){
     })
 }
 
+//seperate function for refreshing tickers so function that appends home coin info doesnt run every refresh
+function coinLibCoinRefresh(apiKey, currency, crypto){
+    var coinlibCoinURL = `https://coinlib.io/api/v1/coin?key=${apiKey}&pref=${currency}&symbol=${crypto}`;
+    fetch(coinlibCoinURL).then(function(response){
+        if(response.ok){
+            response.json().then(function(data){
+                tickerData(data, currency, crypto);
+            })
+        }
+        else{
+            console.log("api bad, you must be bad at coding :(")
+        }
+    })
+}
+
 //moved David's code to append data to main page into it's own function 
 function coinInfo(data){
     $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
@@ -231,6 +247,11 @@ function tickerData(data, currency, crypto){
 //function to create crypto ticker and append to page
 function cryptoTicker(dataObj){
     const results = tickerArr.some(obj => obj["symbol"] === dataObj.symbol);
+    if(results){
+        var oldObj = tickerArr.find(obj => obj["symbol"] === dataObj.symbol);
+        oldObj.price = dataObj.price;
+        oldObj.change = dataObj.change;
+    }
     if(!results){
         tickerArr.push(dataObj);
         if(tickerArr.length > 3){
@@ -274,6 +295,7 @@ function tickerLoad(){
 
         tickerEl.appendChild(tickerDiv);
     })
+    intervalId = setInterval(tickerRefresh, 61000);
 };
 
 function tickerRefresh(){
@@ -289,11 +311,14 @@ function tickerRefresh(){
     tickers = JSON.parse(tickers);
     tickerEl.innerText = "";
     tickers.forEach(function(info){
-        coinLibCoin(apiKey, info.currency, info.crypto);
+        coinLibCoinRefresh(apiKey, info.currency, info.crypto);
     })
+    if(intervalId !== null){
+        clearInterval(intervalId);
+    }
 }
 
-// tickerRefresh();
+
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
