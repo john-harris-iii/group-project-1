@@ -293,7 +293,7 @@ function tickerRefresh(){
     })
 }
 
-tickerRefresh();
+// tickerRefresh();
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
