@@ -230,7 +230,7 @@ function tickerData(data, currency, crypto){
 
 //function to create crypto ticker and append to page
 function cryptoTicker(dataObj){
-    const results = tickerArr.some(obj => obj["change"] === dataObj.change);
+    const results = tickerArr.some(obj => obj["symbol"] === dataObj.symbol);
     if(!results){
         tickerArr.push(dataObj);
         if(tickerArr.length > 3){
@@ -277,6 +277,7 @@ function tickerLoad(){
 };
 
 function tickerRefresh(){
+    console.log("tickers refreshing");
     var apiKey = "071a874f77975d96"
     var tickers = localStorage.getItem("ticker");
 
@@ -292,6 +293,7 @@ function tickerRefresh(){
     })
 }
 
+tickerRefresh();
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
