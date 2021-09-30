@@ -161,12 +161,12 @@ function coinLibCoinList() {
 
 
 $('#test-btn').click(function() {
-    
     var apiKey = 'adae3d665d605d5a';
-    var currency = currencySelect.val();
-    var crypto = cryptoSelect.val();
-
-    coinLibCoin(apiKey, currency, crypto);
+    if(currencySelect.val() !== "" || cryptoSelect.val() !== ""){
+        var currency = currencySelect.val();
+        var crypto = cryptoSelect.val();
+        coinLibCoin(apiKey, currency, crypto);
+    }
 })
 
 //seperated coinLibCoin from button for ticker refresh purposes
