@@ -474,9 +474,14 @@ function rankedListAccordion() {
             $(".index_div_vars" + i).append(coin24hrChangeP_Span);
             // SPAN FOR Coin 24hr Change Main Style
             if (singleCoin24hrChange >= 0) {
-            
+                accordion_div_main.classList.add("accordion-content-pos");
+                accordion_div_text.classList.add("accordion-content-pos");
+                accordion_div_vars.classList.add("accordion-content-pos");
                 coin24hrChangeP_Span.classList.add("span_positive");
             } else {
+                accordion_div_main.classList.add("accordion-content-neg");
+                accordion_div_text.classList.add("accordion-content-neg");
+                accordion_div_vars.classList.add("accordion-content-neg");
                 coin24hrChangeP_Span.classList.add("span_negative");
             }
             

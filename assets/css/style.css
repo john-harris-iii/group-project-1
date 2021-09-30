@@ -62,9 +62,16 @@ body {
     font-weight: normal;
 }
 
+.accordion-content-pos {
+    background-color: rgb(112, 153, 111);
+}
+
+.accordion-content-neg {
+    background-color: rgb(138, 88, 88);
+}
+
 .acc_div_main {
     height: fit-content;
-
 }
 
 .acc_div_text {
@@ -87,10 +94,6 @@ body {
 
 .clear {
     clear: both;
-}
-
-.accordion-content {
-    background-color: #dddddd;
 }
 
 .coin-symbol-text,
@@ -143,7 +146,7 @@ html, body {
     height:100%;
   }
   
-  body, .accordion-content{
+  body {
       background: linear-gradient(0.25turn,#af430d,#af0d28, #af940d, #0d79af );
       background-size: 400% 400%;
       animation: slidein 10s ease-in-out;
