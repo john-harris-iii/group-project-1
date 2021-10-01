@@ -164,3 +164,12 @@ html, body {
   select {
 background-color: transparent;
   }
+
+#test-btn:hover {
+    cursor: pointer;
+  }
+
+#test-btn:active {
+    background-color: gray;
+    color: white;
+  }

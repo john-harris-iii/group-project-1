@@ -466,11 +466,11 @@ function rankedListAccordion() {
     })
 }
 
+// function that will only happen once
+
 $("#menu-dd").on("change", function () {
     if ($(this).val() === "home") {
         // Clear content so new content can be placed
-        cardDividerInfo.innerHTML = "";
-        cardSectionInfo.innerHTML = "";
         cryptoDate.val('');
         homeDividerInfo();
         homeSectionInfo();
