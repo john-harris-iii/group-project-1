@@ -38,7 +38,9 @@ body {
     background-color: transparent;
 }
 
-#ranked-list-title {
+#ranked-list-title,
+.onecoin-title
+.onecoin-rank {
     font-weight: bold;
     color: white;
     font-family: 'Rubik', sans-serif;
@@ -70,11 +72,20 @@ body {
     background-color: rgb(138, 88, 88);
 }
 
-.acc_div_main {
-    height: fit-content;
+.onecoin-main-div,
+.onecoin-text-div,
+.onecoin-vars-div {
+    padding: 1rem 1rem 1rem 0;
 }
 
-.acc_div_text {
+.acc_div_main,
+.onecoin-main-div {
+    height: fit-content;
+    align-content: center;
+}
+
+.acc_div_text,
+.onecoin-text-div {
     display: inline-block;
     width: 49%;
     border: none;
@@ -83,13 +94,22 @@ body {
     color: white;
 }
 
-.acc_div_vars {
+.acc_div_vars,
+.onecoin-vars-div {
     display: inline-block;
     width: 49%;
     border: none;
     padding-right: 0;
     vertical-align: top;
     color: white;
+}
+
+.onecoin-text-div {
+    width: 60%;
+}
+
+.onecoin-vars-div {
+    width: 39%;
 }
 
 .clear {
@@ -101,7 +121,8 @@ body {
 .coin-24hr-change-text,
 .coin-volume-text,
 .coin-market-cap-text,
-.coin-percent-tbv-text {
+.coin-percent-tbv-text,
+.onecoin-text {
     font-size: 1.1rem;
     font-style: italic;
     text-align: right;
@@ -116,13 +137,19 @@ body {
 .coin-24hr-change-value,
 .coin-volume-value,
 .coin-market-cap-value,
-.coin-percent-tbv-value {
+.coin-percent-tbv-value,
+.onecoin-value {
     font-size: 1.1rem;
     font-style: normal;
     text-align: left;
     margin: 5px 0;
     display: block;
     word-wrap: break-word;
+}
+
+.onecoin-value {
+    text-align: center;
+    align-content: center;
 }
 
 .span_negative {
