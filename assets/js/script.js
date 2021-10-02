@@ -85,43 +85,135 @@ function historicData(data, date){
 
 // vontains content that will be made for the base of the page.
 function homeDividerInfo() {
-    // part for the divider info class
-    // hold coin name
-    var currentCoin = document.createElement('h4');
-    $(currentCoin).attr('id', 'currency-name');
-    cardDividerInfo.appendChild(currentCoin);
-    // hold coin rank
-    var currentRank = document.createElement('h4');
-    $(currentRank).attr('id', 'currency-rank');
-    cardDividerInfo.appendChild(currentRank);
+    // // part for the divider info class
+    // // hold coin name
+    // var currentCoin = document.createElement('h4');
+    // $(currentCoin).attr('id', 'currency-name');
+    // cardDividerInfo.appendChild(currentCoin);
+    // // hold coin rank
+    // var currentRank = document.createElement('h4');
+    // $(currentRank).attr('id', 'currency-rank');
+    // cardDividerInfo.appendChild(currentRank);
+    var oneCoinTitle = document.createElement("h4");
+    var oneCoinSymbol = document.createElement("span");
+
+    oneCoinTitle.classList.add("onecoin-title");
+    $(".divider-info").append(oneCoinTitle);
+
+    oneCoinSymbol.classList.add("onecoin-symbol");
+    $(".onecoin-title").append(oneCoinSymbol);
 }
 function homeSectionInfo() {
-    // part for the section info class
+    // // part for the section info class
 
-    // hold current value text 
-    var currentValueText = document.createElement('p')
-    $(currentValueText).attr('id', 'current-value');
-    cardSectionInfo.appendChild(currentValueText);
-    // hold high-24hr text
-    var high24hText = document.createElement('p')
-    $(high24hText).attr('id', 'high-24hr');
-    cardSectionInfo.appendChild(high24hText)
-    // hold last hour change text
-    var hourChangeText = document.createElement('p')
-    $(hourChangeText).attr('id', 'change-1h');
-    cardSectionInfo.appendChild(hourChangeText);
-    // hold last 24 hr change
-    var twentyFourHourChangeText = document.createElement('p')
-    $(twentyFourHourChangeText).attr('id', 'change-24h');
-    cardSectionInfo.appendChild(twentyFourHourChangeText);
-    // hold last 7 day change
-    var sevenDayChangeText = document.createElement('p')
-    $(sevenDayChangeText).attr('id', 'change-7d');
-    cardSectionInfo.appendChild(sevenDayChangeText);
-    // hold last 30 day change
-    var thirtyDayChangeText = document.createElement('p')
-    $(thirtyDayChangeText).attr('id', 'change-30d');
-    cardSectionInfo.appendChild(thirtyDayChangeText);
+    // // hold current value text 
+    // var currentValueText = document.createElement('p')
+    // $(currentValueText).attr('id', 'current-value');
+    // cardSectionInfo.appendChild(currentValueText);
+    // // hold high-24hr text
+    // var high24hText = document.createElement('p')
+    // $(high24hText).attr('id', 'high-24hr');
+    // cardSectionInfo.appendChild(high24hText)
+    // // hold last hour change text
+    // var hourChangeText = document.createElement('p')
+    // $(hourChangeText).attr('id', 'change-1h');
+    // cardSectionInfo.appendChild(hourChangeText);
+    // // hold last 24 hr change
+    // var twentyFourHourChangeText = document.createElement('p')
+    // $(twentyFourHourChangeText).attr('id', 'change-24h');
+    // cardSectionInfo.appendChild(twentyFourHourChangeText);
+    // // hold last 7 day change
+    // var sevenDayChangeText = document.createElement('p')
+    // $(sevenDayChangeText).attr('id', 'change-7d');
+    // cardSectionInfo.appendChild(sevenDayChangeText);
+    // // hold last 30 day change
+    // var thirtyDayChangeText = document.createElement('p')
+    // $(thirtyDayChangeText).attr('id', 'change-30d');
+    // cardSectionInfo.appendChild(thirtyDayChangeText);
+    var oneCoinRank = document.createElement("p");
+    var oneCoinMainDiv = document.createElement("div");
+    var oneCoinTextDiv = document.createElement("div");
+    var oneCoinVarsDiv = document.createElement("div");
+    var oneCoinClearDiv = document.createElement("div");
+    var oneCoinCurrentValue_text = document.createElement("p");
+    var oneCoinCurrentValue_value = document.createElement("p");
+    var oneCoinHighest24hValue_text = document.createElement("p");
+    var oneCoinHighest24hValue_value = document.createElement("p");
+    var oneCoin1hChange_text = document.createElement("p");
+    var oneCoin1hChange_value = document.createElement("p");
+    var oneCoin24hChange_text = document.createElement("p");
+    var oneCoin24hChange_value = document.createElement("p");
+    var oneCoin7dChange_text = document.createElement("p");
+    var oneCoin7dChange_value = document.createElement("p");
+    var oneCoin30dChange_text = document.createElement("p");
+    var oneCoin30dChange_value = document.createElement("p");
+
+    // Main Div for section
+    oneCoinMainDiv.classList.add("onecoin-main-div");
+    $(".section-info").append(oneCoinMainDiv);
+
+    oneCoinRank.classList.add("onecoin-rank");
+    $(".onecoin-main-div").append(oneCoinRank);
+
+    // Text Div in Main
+    oneCoinTextDiv.classList.add("onecoin-text-div");
+    $(".onecoin-main-div").append(oneCoinTextDiv);
+
+    // -- Current Value Text
+    oneCoinCurrentValue_text.classList.add("onecoin-text", "oct-current-value");
+    $(".onecoin-text-div").append(oneCoinCurrentValue_text);
+
+    // -- Highest 24h Value Text
+    oneCoinHighest24hValue_text.classList.add("onecoin-text", "oct-highest-24");
+    $(".onecoin-text-div").append(oneCoinHighest24hValue_text);
+
+    // -- 1hr Percent Change Text
+    oneCoin1hChange_text.classList.add("onecoin-text", "oct-change-1h");
+    $(".onecoin-text-div").append(oneCoin1hChange_text);
+
+    // -- 24hr Percent Change Text
+    oneCoin24hChange_text.classList.add("onecoin-text", "oct-change-24h");
+    $(".onecoin-text-div").append(oneCoin24hChange_text);
+
+    // -- 7day Percent Change Text
+    oneCoin7dChange_text.classList.add("onecoin-text", "oct-change-7d");
+    $(".onecoin-text-div").append(oneCoin7dChange_text);
+
+    // -- 30day Percent Change Text
+    oneCoin30dChange_text.classList.add("onecoin-text", "oct-change-30d");
+    $(".onecoin-text-div").append(oneCoin30dChange_text);
+
+    // Vars Div in Main
+    oneCoinVarsDiv.classList.add("onecoin-vars-div");
+    $(".onecoin-main-div").append(oneCoinVarsDiv);
+
+    // -- Current Value Value
+    oneCoinCurrentValue_value.classList.add("onecoin-value", "ocv-current-value");
+    $(".onecoin-vars-div").append(oneCoinCurrentValue_value);
+
+    // -- Highest 24h Value Value
+    oneCoinHighest24hValue_value.classList.add("onecoin-value", "ocv-highest-24");
+    $(".onecoin-vars-div").append(oneCoinHighest24hValue_value);
+
+    // -- 1hr Percent Change Value
+    oneCoin1hChange_value.classList.add("onecoin-value", "ocv-change-1h");
+    $(".onecoin-vars-div").append(oneCoin1hChange_value);
+
+    // -- 24hr Percent Change Value
+    oneCoin24hChange_value.classList.add("onecoin-value", "ocv-change-24h");
+    $(".onecoin-vars-div").append(oneCoin24hChange_value);
+
+    // -- 7day Percent Change Value
+    oneCoin7dChange_value.classList.add("onecoin-value", "ocv-change-7d");
+    $(".onecoin-vars-div").append(oneCoin7dChange_value);
+
+    // -- 30day Percent Change Value
+    oneCoin30dChange_value.classList.add("onecoin-value", "ocv-change-30d");
+    $(".onecoin-vars-div").append(oneCoin30dChange_value);
+
+    // Clear Div in Main
+    oneCoinClearDiv.classList.add("clear");
+    $(".onecoin-main-div").append(oneCoinClearDiv);
     
 }
 
@@ -203,167 +295,78 @@ function coinLibCoinRefresh(apiKey, currency, crypto){
 
 //moved David's code to append data to main page into it's own function 
 function coinInfo(data){
+
+    $(".onecoin-title").html(data.name + " ");
+    $(".onecoin-symbol").html(" (" + data.show_symbol + ")");
     
-    // var oneCoinTitle = document.createElement("h4");
-    // var oneCoinSymbol = document.createElement("span");
-    // var oneCoinRank = document.createElement("p");
-    // var oneCoinMainDiv = document.createElement("div");
-    // var oneCoinTextDiv = document.createElement("div");
-    // var oneCoinVarsDiv = document.createElement("div");
-    // var oneCoinClearDiv = document.createElement("div");
-    // var oneCoinCurrentValue_text = document.createElement("p");
-    // var oneCoinCurrentValue_value = document.createElement("p");
-    // var oneCoinHighest24hValue_text = document.createElement("p");
-    // var oneCoinHighest24hValue_value = document.createElement("p");
-    // var oneCoin1hChange_text = document.createElement("p");
-    // var oneCoin1hChange_value = document.createElement("p");
-    // var oneCoin24hChange_text = document.createElement("p");
-    // var oneCoin24hChange_value = document.createElement("p");
-    // var oneCoin7dChange_text = document.createElement("p");
-    // var oneCoin7dChange_value = document.createElement("p");
-    // var oneCoin30dChange_text = document.createElement("p");
-    // var oneCoin30dChange_value = document.createElement("p");
+    $(".onecoin-rank").html("Rank: " + data.rank);
+    
+    $(".oct-current-value").html("Current Value:");
+    $(".oct-highest-24").html("24h Highest Value:");
+    $(".oct-change-1h").html("Last Hour Change:");
+    $(".oct-change-24h").html("Last 24h Change:");
+    $(".oct-change-7d").html("Last 7d Change:");
+    $(".oct-change-30d").html("Last 30d Change:");
 
-    // oneCoinTitle.classList.add("onecoin-title");
-    // oneCoinTitle.innerHTML = data.name + " ";
-    // $(".divider-info").append(oneCoinTitle);
+    $(".ocv-current-value").html(parseFloat(data.price).toFixed(2));
+    $(".ocv-highest-24").html(parseFloat(data.high_24h).toFixed(2))
+    if (data.delta_1h >= 0) {
+        $(".ocv-change-1h").html("+" + data.delta_1h + "%");
+        $(".ocv-change-1h").addClass("span_positive");
+    } else {
+        $(".ocv-change-1h").html(data.delta_1h + "%");
+        $(".ocv-change-1h").addClass("span_negative");
+    }
+    if (data.delta_24h >= 0) {
+        $(".ocv-change-24h").html("+" + data.delta_24h + "%");
+        $(".ocv-change-24h").addClass("span_positive");
+    } else {
+        $(".ocv-change-24h").html(data.delta_24h + "%");
+        $(".ocv-change-24h").addClass("span_negative");
+    }
+    if (data.delta_7d >= 0) {
+        $(".ocv-change-7d").html("+" + data.delta_7d + "%");
+        $(".ocv-change-7d").addClass("span_positive");
+    } else {
+        $(".ocv-change-7d").html(data.delta_7d + "%");
+        $(".ocv-change-7d").addClass("span_negative");
+    }
+    if (data.delta_30d >= 0) {
+        $(".ocv-change-30d").html("+" + data.delta_30d + "%");
+        $(".ocv-change-30d").addClass("span_positive");
+    } else {
+        $(".ocv-change-30d").html(data.delta_30d + "%");
+        $(".ocv-change-30d").addClass("span_negative");
+    }
 
-    // oneCoinSymbol.classList.add("onecoin-symbol");
-    // oneCoinSymbol.innerHTML = " (" + data.show_symbol + ")";
-    // $(".onecoin-title").append(oneCoinSymbol);
-
-    // // Main Div for section
-    // oneCoinMainDiv.classList.add("onecoin-main-div");
-    // $(".section-info").append(oneCoinMainDiv);
-
-    // oneCoinRank.classList.add("onecoin-rank");
-    // oneCoinRank.innerHTML = "Rank: " + data.rank;
-    // $(".onecoin-main-div").append(oneCoinRank);
-
-    // // Text Div in Main
-    // oneCoinTextDiv.classList.add("onecoin-text-div");
-    // $(".onecoin-main-div").append(oneCoinTextDiv);
-
-    // // -- Current Value Text
-    // oneCoinCurrentValue_text.classList.add("onecoin-text");
-    // oneCoinCurrentValue_text.innerHTML = "Current Value:";
-    // $(".onecoin-text-div").append(oneCoinCurrentValue_text);
-
-    // // -- Highest 24h Value Text
-    // oneCoinHighest24hValue_text.classList.add("onecoin-text");
-    // oneCoinHighest24hValue_text.innerHTML = "24h Highest Value:";
-    // $(".onecoin-text-div").append(oneCoinHighest24hValue_text);
-
-    // // -- 1hr Percent Change Text
-    // oneCoin1hChange_text.classList.add("onecoin-text");
-    // oneCoin1hChange_text.innerHTML = "Last Hour Change:";
-    // $(".onecoin-text-div").append(oneCoin1hChange_text);
-
-    // // -- 24hr Percent Change Text
-    // oneCoin24hChange_text.classList.add("onecoin-text");
-    // oneCoin24hChange_text.innerHTML = "Last 24h Change:";
-    // $(".onecoin-text-div").append(oneCoin24hChange_text);
-
-    // // -- 7day Percent Change Text
-    // oneCoin7dChange_text.classList.add("onecoin-text");
-    // oneCoin7dChange_text.innerHTML = "Last 7d Change:";
-    // $(".onecoin-text-div").append(oneCoin7dChange_text);
-
-    // // -- 30day Percent Change Text
-    // oneCoin30dChange_text.classList.add("onecoin-text");
-    // oneCoin30dChange_text.innerHTML = "Last 30d Change:";
-    // $(".onecoin-text-div").append(oneCoin30dChange_text);
-
-    // // Vars Div in Main
-    // oneCoinVarsDiv.classList.add("onecoin-vars-div");
-    // $(".onecoin-main-div").append(oneCoinVarsDiv);
-
-    // // -- Current Value Value
-    // oneCoinCurrentValue_value.classList.add("onecoin-value");
-    // oneCoinCurrentValue_value.innerHTML = parseFloat(data.price).toFixed(2);
-    // $(".onecoin-vars-div").append(oneCoinCurrentValue_value);
-
-    // // -- Highest 24h Value Value
-    // oneCoinHighest24hValue_value.classList.add("onecoin-value");
-    // oneCoinHighest24hValue_value.innerHTML = parseFloat(data.high_24h).toFixed(2);
-    // $(".onecoin-vars-div").append(oneCoinHighest24hValue_value);
-
-    // // -- 1hr Percent Change Value
-    // oneCoin1hChange_value.classList.add("onecoin-value");
-    // if (data.delta_1h >= 0) {
-    //     oneCoin1hChange_value.innerHTML = "+" + data.delta_1h + "%";
-    //     oneCoin1hChange_value.classList.add("span_positive");
-    // } else {
-    //     oneCoin1hChange_value.innerHTML = data.delta_1h + "%";
-    //     oneCoin1hChange_value.classList.add("span_negative");
+    // $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
+    // $('#currency-rank').html('Rank: ' + data.rank)
+    // $('#current-value').html('Current Value: $' + parseFloat(data.price).toFixed(2));
+    // $('#high-24hr').html('Highest Value in past 24hr: $' + parseFloat(data.high_24h).toFixed(2));
+    // if (data.delta_1h > 0) {
+    //     $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%')
     // }
-    // $(".onecoin-vars-div").append(oneCoin1hChange_value);
-
-    // // -- 24hr Percent Change Value
-    // oneCoin24hChange_value.classList.add("onecoin-value");
-    // if (data.delta_24h >= 0) {
-    //     oneCoin24hChange_value.innerHTML = "+" + data.delta_24h + "%";
-    //     oneCoin24hChange_value.classList.add("span_positive");
-    // } else {
-    //     oneCoin24hChange_value.innerHTML = data.delta_24h + "%";
-    //     oneCoin24hChange_value.classList.add("span_negative");
+    // if (data.delta_1h < 0) {
+    //     $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
+    //     }
+    // if (data.delta_24h > 0) {
+    //     $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
     // }
-    // $(".onecoin-vars-div").append(oneCoin24hChange_value);
-
-    // // -- 7day Percent Change Value
-    // oneCoin7dChange_value.classList.add("onecoin-value");
-    // if (data.delta_7d >= 0) {
-    //     oneCoin7dChange_value.innerHTML = "+" + data.delta_7d + "%";
-    //     oneCoin7dChange_value.classList.add("span_positive");
-    // } else {
-    //     oneCoin7dChange_value.innerHTML = data.delta_7d + "%";
-    //     oneCoin7dChange_value.classList.add("span_negative");
+    // if (data.delta_24h < 0) {
+    //     $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
     // }
-    // $(".onecoin-vars-div").append(oneCoin7dChange_value);
-
-    // // -- 30day Percent Change Value
-    // oneCoin30dChange_value.classList.add("onecoin-value");
-    // if (data.delta_30d >= 0) {
-    //     oneCoin30dChange_value.innerHTML = "+" + data.delta_30d + "%";
-    //     oneCoin30dChange_value.classList.add("span_positive");
-    // } else {
-    //     oneCoin30dChange_value.innerHTML = data.delta_30d + "%";
-    //     oneCoin30dChange_value.classList.add("span_negative");
+    // if (data.delta_7d > 0) {
+    //     $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
     // }
-    // $(".onecoin-vars-div").append(oneCoin30dChange_value);
-
-    // // Clear Div in Main
-    // oneCoinClearDiv.classList.add("clear");
-    // $(".onecoin-main-div").append(oneCoinClearDiv);
-
-    $('#currency-name').html(data.name + ' (' + data.show_symbol + ')')
-    $('#currency-rank').html('Rank: ' + data.rank)
-    $('#current-value').html('Current Value: $' + parseFloat(data.price).toFixed(2));
-    $('#high-24hr').html('Highest Value in past 24hr: $' + parseFloat(data.high_24h).toFixed(2));
-    if (data.delta_1h > 0) {
-        $('#change-1h').html('Last Hour Change: +' + data.delta_1h + '%')
-    }
-    if (data.delta_1h < 0) {
-        $('#change-1h').html('Last Hour Change: ' + data.delta_1h + '%')
-        }
-    if (data.delta_24h > 0) {
-        $('#change-24h').html('Last 24hr Change: +' + data.delta_24h + '%')
-    }
-    if (data.delta_24h < 0) {
-        $('#change-24h').html('Last 24hr Change: ' + data.delta_24h + '%')
-    }
-    if (data.delta_7d > 0) {
-        $('#change-7d').html('Last 7d change: +' + data.delta_7d + '%')
-    }
-    if (data.delta_7d < 0) {
-        $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
-        }
-    if (data.delta_30d > 0) {
-        $('#change-30d').html('Last 30d change: +' + data.delta_30d + '%')
-    }
-    if (data.delta_30d < 0) {
-        $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
-    }
+    // if (data.delta_7d < 0) {
+    //     $('#change-7d').html('Last 7d change: ' + data.delta_7d + '%')
+    //     }
+    // if (data.delta_30d > 0) {
+    //     $('#change-30d').html('Last 30d change: +' + data.delta_30d + '%')
+    // }
+    // if (data.delta_30d < 0) {
+    //     $('#change-30d').html('Last 30d change: ' + data.delta_30d + '%')
+    // }
 }
 
 function tickerData(data, currency, crypto){
@@ -647,6 +650,7 @@ $("#menu-dd").on("change", function () {
         cryptoDate.val('');
         homeDividerInfo();
         homeSectionInfo();
+        coinInfo(data);
     }
     else if ($(this).val() === "ranked-list") {
         // Clear content so new content can be placed

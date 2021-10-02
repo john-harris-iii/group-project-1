@@ -9,11 +9,12 @@ body {
 }
 
 .title-menu-container {
-    border-bottom: 3px solid transparent;
+    border-bottom: 3px solid transparent;;
 }
 
 .page-title-name a {
-    color:black;
+    font-size: 2.2rem;
+    color: black;
     text-decoration: none;
     font-weight: bold;
     font-family: 'Rubik', sans-serif;
@@ -110,6 +111,7 @@ body {
 
 .onecoin-vars-div {
     width: 39%;
+    padding-left: 1rem;
 }
 
 .clear {
@@ -145,11 +147,6 @@ body {
     margin: 5px 0;
     display: block;
     word-wrap: break-word;
-}
-
-.onecoin-value {
-    text-align: center;
-    align-content: center;
 }
 
 .span_negative {
