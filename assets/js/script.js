@@ -433,7 +433,6 @@ function tickerLoad(){
 };
 
 function tickerRefresh(){
-    console.log("tickers refreshing");
     var apiKey = "071a874f77975d96"
     var tickers = localStorage.getItem("ticker");
 
@@ -444,15 +443,13 @@ function tickerRefresh(){
 
     tickers = JSON.parse(tickers);
     tickerEl.innerText = "";
-    tickers.forEach(function(info){
-        coinLibCoinRefresh(apiKey, info.currency, info.crypto);
+    var index = 0;
+    tickers.forEach(function(obj, index){
+        setTimeout(function(){
+            coinLibCoinRefresh(apiKey, obj.currency, obj.crypto);
+        }, index * 1000)
     })
-//     if(intervalId !== null){
-//         clearInterval(intervalId);
-//     }
 }
-
-
 
 function rankedListAccordion() {
     var apiKey = `adae3d665d605d5a`;
