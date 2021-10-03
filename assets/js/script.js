@@ -125,24 +125,6 @@ function homeSectionInfo() {
     
 }
 
-function coinLibGlobal() {
-var apiKey = `adae3d665d605d5a`;
-//variable for currency user selects. This will come from the input value on the webpage
-//in the final product currency will be passed into the function as an argument
-var currency = "EUR"
-var coinlibGlobalURL = 'https://coinlib.io/api/v1/global?key=' + apiKey + '&pref=' + currency;
-
-    fetch(coinlibGlobalURL)
-        .then(function(response) {
-            return response.json()
-        })
-        .then(function(data) {
-            console.log(data)
-        })
-}
-
-//coinLibGlobal();
-
 
 function coinLibCoinList() {
     var apiKey = `adae3d665d605d5a`;
