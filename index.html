@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-foundation.min.css" integrity="sha512-FxxtEcqC30sYnk1uvdsbiBuRRAOjXQlSc/YPN5d9oVTBhsuqy3ptkPqkXinxwpscyhQz8I9BLa+EhlvxtwFTGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Karla&family=Rubik&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
 </head>
 <body>
 
     <header><!-- Style/class relating to bootstrap container -->
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 12 -->
-                <div>
-                    <h1><a href="./index.html">CryptoWatcher</a></h1>
+        <div class="grid-container title-menu-container"><!-- Style/class relating to bootstrap row -->
+            <div class="grid-x grid-margin-x align-center-middle"><!-- Style/class relating to bootstrap column 12 -->
+                <div class="cell large-10 medium-9 small-8">
+                    <h1 class="page-title-name"><a href="./index.html">CryptoWatcher</a></h1>
                 </div>
-                <div>
-                    <span class="fi-list"></span><!-- Have drop down for following selections -->
+
+                <div class="cell large-2 medium-3 small-4">
+                
                     <select name="menu-dd" id="menu-dd" class="toggle" data-target=".crypto">
-                        <option id="home" value="home" class="home">Home</option>
+                        <option id="home" value="home" data-show=".home">Home</option>
                         <!-- above value would direct user to home page-->
-                        <option id="ranked-list" value="ranked-list" data-show="ranked-list ">Ranked List</option><!-- possibly from coinlib coinlist endpoint -->
+                        <option id="ranked-list" value="ranked-list" data-show=".ranked-list">
+                            Ranked List
+                        </option><!-- possibly from coinlib coinlist endpoint -->
                         <!-- above option would create new div for each coin and order 1-100 -->
                         <option value="historical-trades" data-show=".historical-trades">Historical Trades</option><!-- polygon API-->
                         <!-- above option would generate -->
@@ -32,64 +36,55 @@
         </div>
     </header>
 
-    <main><!-- Style/class relating to bootstrap container -->
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 3 -->
-                <label for="crypto">Select your crypto:</label>
-                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:"></input>
+    <main class="grid-container"><!-- Style/class relating to bootstrap container -->
+        <div class="grid-x grid-margin-x"><!-- Style/class relating to bootstrap row -->
+            <div class="cell large-2 medium-3 medium-offset- crypto"><!-- Style/class relating to bootstrap column 3 -->
+                <!-- only shows if in home or historical trades option -->
+                <label for="crypto" class="home historical-trades">Select your crypto:</label>
+                <input type="text" id="user-crypto-name" name="user-crypto-name" placeholder="Enter Cryptocurrency here:" class="home historical-trades">
                 <!-- input that shows up if historical trading is selected-->
-                <div class="crypto">
-                <label for="date" class="hide historical-trades">Select the historical date</label>
-                <input type="date" class="hide historical-trades">
+                <!-- input that shows up when in home or historical option -->
+                <label for="money-type" class="home historical-trades">Select your type of currency:</label>
+                <input type="text" name="money-type" id="money-type" class="home historical-trades" placeholder="example: USD, EUR, JPY" />
+                <label for="date" class="hide historical-trades">Select the historical date:</label>
+                <input type="date" name="crypto-date" id="crypto-date" class="hide historical-trades" />
+                <!-- TEST BUTTON -->
+                <input type="button" id="test-btn" class="test-btn home historical-trades" value="SEARCH">
+            </div>
+          
+            <div class="cell large-8 medium-6">
+                <div class="card card-style">
+                    <div class="card-divider align-justify divider-info row">
+
+                    </div>
+                    <div class="card-section section-info">
+
+                    </div>
                 </div>
             </div>
-            <div><!-- Style/class relating to bootstrap column 6 -->
-                <h4 id="currency-name"></h4>
-                <div id="currency-information"> <!-- From coinlib API &/or polygon API -->
-                    <p id="rank"></p>
-                    <p id="current-value"></p><!--(coinlib coin endpoint) data.price -->
-                    <p id="high-24hr"></p><!-- (coinlib coin endpoint) data.high_24h -->
-                    <p id="change-1h"></p><!-- (coinlib coin endpoint) data.delta_1h -->
-                    <p id="change-24h"></p><!-- (coinlib coin endpoint) data.delta_24h -->
-                    <p id="change-7d"></p><!-- (coinlib coin endpoint) data.delta_7d -->
-                    <p id="change-30d"></p><!-- (coinlib coin endpoint) data.delta_30d -->
-                    <p id="recommendation"><!-- To buy now or not maybe? --></p>
-                </div>
-            </div>
-            <div><!-- Style/class relating to bootstrap column 3 -->
+            <div class="cell large-2 medium-3">
                 <h5>CryptoTickers:</h5>
-                <!-- create a new ticker for each crypto searched, will show green if increasing or red if decreasing? as well as % change -->
-                <!-- we can dynamically create by selection/search the options below -->
-                <p id="ticker-name"></p><!-- from snapshot-ticker in polygon -->
-                <p id="todays_change"></p><!-- from snapshot-ticker in polygon -->
-                <p id="today_change_percent"></p><!-- from snapshot-ticker in polygon -->
-            </div>
-        </div>
-
-        <div><!-- Style/class relating to bootstrap row -->
-            <div><!-- Style/class relating to bootstrap column 12 -->
-                <div id="ranked-list-actual"><!-- from drop down on front page -->
-                    <!-- we can choose to dynamically create these if we want to -->
-                    <h6 id="ranked-rank"></h6><!-- (coinlib coinlist endpoint) data.coins[i].rank -->
-                    <p id="ranked-name"></p><!-- (coinlib coinlist endpoint) data.coins[i].name -->
-                    <p id="ranked-price"></p><!-- (coinlib coinlist endpoint) data.coins[i].price -->
-                    <p id="ranked-24h-change"></p><!-- (coinlib coinlist endpoint) data.coins[i].delta_24h -->
+                <div id="tickers">
+                    <!-- dynamically created tickers go here -->
                 </div>
             </div>
         </div>
+    </main>
 
-        <div>
-            <div>
-                <div id="historical-trades-actual">
+    <section class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-12">
+                <div id="historical-trades-actual" class="crypto">
                     <!-- we can choose to dynamically create these if we want to -->
                     <!-- from polygon -->
                 </div>
             </div>
         </div>
-    </main>
-    
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
