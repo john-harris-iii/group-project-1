@@ -24,3 +24,6 @@ Each time a cryptocurrency is searched a ticker is created (up to 3 tickers). Ti
 
 ## Resources
 Crypto Watcher was built with HTML, CSS, and Javascript. It also uses the CSS freamework Foundation, as well as JQuery and moment.js. Crypto Watcher uses the coinlib API (https://coinlib.io/apidocs) and the polygon API (https://polygon.io/docs) to fetch crypto information.
+
+## Deployed Application
+https://john-harris-iii.github.io/crypto-watcher/
