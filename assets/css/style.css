@@ -42,12 +42,12 @@ body {
 .onecoin-title
 .onecoin-rank {
     font-weight: bold;
-    color: white;
+    color: black;
     font-family: 'Rubik', sans-serif;
 }
 
 .accordion-item {
-    background-color:rgb(30, 51, 73);
+    background-color:#fff ;
 }
 
 .coin-rank {
